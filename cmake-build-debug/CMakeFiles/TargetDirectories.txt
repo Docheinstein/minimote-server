@@ -1,0 +1,3 @@
+/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir
+/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/edit_cache.dir
