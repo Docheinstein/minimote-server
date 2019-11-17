@@ -4,18 +4,23 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/stefano/Develop/C/MinimoteServer/main.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/main.c.o"
-  "/home/stefano/Develop/C/MinimoteServer/minimote_controller.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_controller.c.o"
-  "/home/stefano/Develop/C/MinimoteServer/minimote_packet.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_packet.c.o"
-  "/home/stefano/Develop/C/MinimoteServer/minimote_packet_type.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o"
-  "/home/stefano/Develop/C/MinimoteServer/minimote_server.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_server.c.o"
-  "/home/stefano/Develop/C/MinimoteServer/minimote_utils.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_utils.c.o"
-  "/home/stefano/Develop/C/MinimoteServer/minimote_x11.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_x11.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/adt/hash/hash.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/adt/hash/node/hash_node.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/adt/list/list.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/adt/list/node/list_node.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/main.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/main.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/minimote/controller/minimote_controller.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/minimote/packet/type/minimote_packet_type.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../src"
   )
 
 # Targets to which this target links.

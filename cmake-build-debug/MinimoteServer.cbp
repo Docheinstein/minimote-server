@@ -34,6 +34,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/stefano/Develop/C/MinimoteServer/src"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
@@ -53,6 +54,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/stefano/Develop/C/MinimoteServer/src"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
@@ -76,46 +78,70 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/main.c">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/hash/hash.c">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_controller.c">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/hash/hash.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_controller.h">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/hash/node/hash_node.c">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_defs.h">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/hash/node/hash_node.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_packet.c">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/list/list.c">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_packet.h">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/list/list.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_packet_type.c">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/list/node/list_node.c">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_packet_type.h">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/list/node/list_node.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_server.c">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/globals.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_server.h">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.c">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_utils.c">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_utils.h">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/main.c">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_x11.c">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/controller/minimote_controller.c">
 			<Option target="MinimoteServer"/>
 		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/minimote_x11.h">
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/controller/minimote_controller.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/packet/type/minimote_packet_type.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/packet/type/minimote_packet_type.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/CMakeLists.txt">

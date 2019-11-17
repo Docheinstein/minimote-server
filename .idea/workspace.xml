@@ -11,7 +11,47 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="409c3e9a-739d-40f0-9f23-9156c86f743e" name="Default Changelist" comment="" />
+    <list default="true" id="409c3e9a-739d-40f0-9f23-9156c86f743e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/adt/list/list.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/adt/list/list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/C.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/main.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_controller.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_packet.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_server.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_utils.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/minimote_x11.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/MinimoteServer" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/MinimoteServer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/MinimoteServer.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/MinimoteServer.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_controller.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/controller/minimote_controller.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_controller.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/controller/minimote_controller.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_defs.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/globals.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_packet.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/packet/minimote_packet.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_packet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/packet/minimote_packet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_packet_type.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/packet/type/minimote_packet_type.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_packet_type.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/packet/type/minimote_packet_type.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_server.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/server/minimote_server.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_server.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/server/minimote_server.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/utils/byte_utils.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/utils/byte_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_x11.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/x11/minimote_x11.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minimote_x11.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/x11/minimote_x11.h" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +62,30 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1TfcgZrGnbZVsmFXOek0MO6vp4k" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../C++/Alien Kart Race" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tmp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/commons" />
+      <recent name="$PROJECT_DIR$/src/minimote/server" />
+      <recent name="$PROJECT_DIR$/src/minimote/utils" />
+      <recent name="$PROJECT_DIR$/src/minimote/x11" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -59,10 +118,31 @@
       <updated>1573854702136</updated>
       <workItem from="1573854704334" duration="11234000" />
       <workItem from="1573893914625" duration="3661000" />
+      <workItem from="1573897598112" duration="100000" />
+      <workItem from="1573912216024" duration="1017000" />
+      <workItem from="1573913257180" duration="8969000" />
+      <workItem from="1573941456338" duration="5256000" />
+      <workItem from="1573946722299" duration="64000" />
+      <workItem from="1573946795925" duration="112000" />
+      <workItem from="1573946917596" duration="3268000" />
+      <workItem from="1573975321414" duration="6663000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

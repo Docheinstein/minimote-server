@@ -123,194 +123,302 @@ MinimoteServer/fast:
 	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/build
 .PHONY : MinimoteServer/fast
 
-main.o: main.c.o
+src/adt/hash/hash.o: src/adt/hash/hash.c.o
 
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/main.c.s
-.PHONY : main.c.s
-
-minimote_controller.o: minimote_controller.c.o
-
-.PHONY : minimote_controller.o
+.PHONY : src/adt/hash/hash.o
 
 # target to build an object file
-minimote_controller.c.o:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_controller.c.o
-.PHONY : minimote_controller.c.o
+src/adt/hash/hash.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o
+.PHONY : src/adt/hash/hash.c.o
 
-minimote_controller.i: minimote_controller.c.i
+src/adt/hash/hash.i: src/adt/hash/hash.c.i
 
-.PHONY : minimote_controller.i
+.PHONY : src/adt/hash/hash.i
 
 # target to preprocess a source file
-minimote_controller.c.i:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_controller.c.i
-.PHONY : minimote_controller.c.i
+src/adt/hash/hash.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.i
+.PHONY : src/adt/hash/hash.c.i
 
-minimote_controller.s: minimote_controller.c.s
+src/adt/hash/hash.s: src/adt/hash/hash.c.s
 
-.PHONY : minimote_controller.s
+.PHONY : src/adt/hash/hash.s
 
 # target to generate assembly for a file
-minimote_controller.c.s:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_controller.c.s
-.PHONY : minimote_controller.c.s
+src/adt/hash/hash.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.s
+.PHONY : src/adt/hash/hash.c.s
 
-minimote_packet.o: minimote_packet.c.o
+src/adt/hash/node/hash_node.o: src/adt/hash/node/hash_node.c.o
 
-.PHONY : minimote_packet.o
+.PHONY : src/adt/hash/node/hash_node.o
 
 # target to build an object file
-minimote_packet.c.o:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_packet.c.o
-.PHONY : minimote_packet.c.o
+src/adt/hash/node/hash_node.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o
+.PHONY : src/adt/hash/node/hash_node.c.o
 
-minimote_packet.i: minimote_packet.c.i
+src/adt/hash/node/hash_node.i: src/adt/hash/node/hash_node.c.i
 
-.PHONY : minimote_packet.i
+.PHONY : src/adt/hash/node/hash_node.i
 
 # target to preprocess a source file
-minimote_packet.c.i:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_packet.c.i
-.PHONY : minimote_packet.c.i
+src/adt/hash/node/hash_node.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.i
+.PHONY : src/adt/hash/node/hash_node.c.i
 
-minimote_packet.s: minimote_packet.c.s
+src/adt/hash/node/hash_node.s: src/adt/hash/node/hash_node.c.s
 
-.PHONY : minimote_packet.s
+.PHONY : src/adt/hash/node/hash_node.s
 
 # target to generate assembly for a file
-minimote_packet.c.s:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_packet.c.s
-.PHONY : minimote_packet.c.s
+src/adt/hash/node/hash_node.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.s
+.PHONY : src/adt/hash/node/hash_node.c.s
 
-minimote_packet_type.o: minimote_packet_type.c.o
+src/adt/list/list.o: src/adt/list/list.c.o
 
-.PHONY : minimote_packet_type.o
+.PHONY : src/adt/list/list.o
 
 # target to build an object file
-minimote_packet_type.c.o:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o
-.PHONY : minimote_packet_type.c.o
+src/adt/list/list.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o
+.PHONY : src/adt/list/list.c.o
 
-minimote_packet_type.i: minimote_packet_type.c.i
+src/adt/list/list.i: src/adt/list/list.c.i
 
-.PHONY : minimote_packet_type.i
+.PHONY : src/adt/list/list.i
 
 # target to preprocess a source file
-minimote_packet_type.c.i:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.i
-.PHONY : minimote_packet_type.c.i
+src/adt/list/list.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.i
+.PHONY : src/adt/list/list.c.i
 
-minimote_packet_type.s: minimote_packet_type.c.s
+src/adt/list/list.s: src/adt/list/list.c.s
 
-.PHONY : minimote_packet_type.s
+.PHONY : src/adt/list/list.s
 
 # target to generate assembly for a file
-minimote_packet_type.c.s:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.s
-.PHONY : minimote_packet_type.c.s
+src/adt/list/list.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.s
+.PHONY : src/adt/list/list.c.s
 
-minimote_server.o: minimote_server.c.o
+src/adt/list/node/list_node.o: src/adt/list/node/list_node.c.o
 
-.PHONY : minimote_server.o
+.PHONY : src/adt/list/node/list_node.o
 
 # target to build an object file
-minimote_server.c.o:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_server.c.o
-.PHONY : minimote_server.c.o
+src/adt/list/node/list_node.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o
+.PHONY : src/adt/list/node/list_node.c.o
 
-minimote_server.i: minimote_server.c.i
+src/adt/list/node/list_node.i: src/adt/list/node/list_node.c.i
 
-.PHONY : minimote_server.i
+.PHONY : src/adt/list/node/list_node.i
 
 # target to preprocess a source file
-minimote_server.c.i:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_server.c.i
-.PHONY : minimote_server.c.i
+src/adt/list/node/list_node.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.i
+.PHONY : src/adt/list/node/list_node.c.i
 
-minimote_server.s: minimote_server.c.s
+src/adt/list/node/list_node.s: src/adt/list/node/list_node.c.s
 
-.PHONY : minimote_server.s
+.PHONY : src/adt/list/node/list_node.s
 
 # target to generate assembly for a file
-minimote_server.c.s:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_server.c.s
-.PHONY : minimote_server.c.s
+src/adt/list/node/list_node.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.s
+.PHONY : src/adt/list/node/list_node.c.s
 
-minimote_utils.o: minimote_utils.c.o
+src/commons/utils/byte_utils.o: src/commons/utils/byte_utils.c.o
 
-.PHONY : minimote_utils.o
+.PHONY : src/commons/utils/byte_utils.o
 
 # target to build an object file
-minimote_utils.c.o:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_utils.c.o
-.PHONY : minimote_utils.c.o
+src/commons/utils/byte_utils.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o
+.PHONY : src/commons/utils/byte_utils.c.o
 
-minimote_utils.i: minimote_utils.c.i
+src/commons/utils/byte_utils.i: src/commons/utils/byte_utils.c.i
 
-.PHONY : minimote_utils.i
+.PHONY : src/commons/utils/byte_utils.i
 
 # target to preprocess a source file
-minimote_utils.c.i:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_utils.c.i
-.PHONY : minimote_utils.c.i
+src/commons/utils/byte_utils.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.i
+.PHONY : src/commons/utils/byte_utils.c.i
 
-minimote_utils.s: minimote_utils.c.s
+src/commons/utils/byte_utils.s: src/commons/utils/byte_utils.c.s
 
-.PHONY : minimote_utils.s
+.PHONY : src/commons/utils/byte_utils.s
 
 # target to generate assembly for a file
-minimote_utils.c.s:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_utils.c.s
-.PHONY : minimote_utils.c.s
+src/commons/utils/byte_utils.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.s
+.PHONY : src/commons/utils/byte_utils.c.s
 
-minimote_x11.o: minimote_x11.c.o
+src/main.o: src/main.c.o
 
-.PHONY : minimote_x11.o
+.PHONY : src/main.o
 
 # target to build an object file
-minimote_x11.c.o:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_x11.c.o
-.PHONY : minimote_x11.c.o
+src/main.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/main.c.o
+.PHONY : src/main.c.o
 
-minimote_x11.i: minimote_x11.c.i
+src/main.i: src/main.c.i
 
-.PHONY : minimote_x11.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-minimote_x11.c.i:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_x11.c.i
-.PHONY : minimote_x11.c.i
+src/main.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/main.c.i
+.PHONY : src/main.c.i
 
-minimote_x11.s: minimote_x11.c.s
+src/main.s: src/main.c.s
 
-.PHONY : minimote_x11.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-minimote_x11.c.s:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/minimote_x11.c.s
-.PHONY : minimote_x11.c.s
+src/main.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/main.c.s
+.PHONY : src/main.c.s
+
+src/minimote/controller/minimote_controller.o: src/minimote/controller/minimote_controller.c.o
+
+.PHONY : src/minimote/controller/minimote_controller.o
+
+# target to build an object file
+src/minimote/controller/minimote_controller.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o
+.PHONY : src/minimote/controller/minimote_controller.c.o
+
+src/minimote/controller/minimote_controller.i: src/minimote/controller/minimote_controller.c.i
+
+.PHONY : src/minimote/controller/minimote_controller.i
+
+# target to preprocess a source file
+src/minimote/controller/minimote_controller.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.i
+.PHONY : src/minimote/controller/minimote_controller.c.i
+
+src/minimote/controller/minimote_controller.s: src/minimote/controller/minimote_controller.c.s
+
+.PHONY : src/minimote/controller/minimote_controller.s
+
+# target to generate assembly for a file
+src/minimote/controller/minimote_controller.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.s
+.PHONY : src/minimote/controller/minimote_controller.c.s
+
+src/minimote/packet/minimote_packet.o: src/minimote/packet/minimote_packet.c.o
+
+.PHONY : src/minimote/packet/minimote_packet.o
+
+# target to build an object file
+src/minimote/packet/minimote_packet.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o
+.PHONY : src/minimote/packet/minimote_packet.c.o
+
+src/minimote/packet/minimote_packet.i: src/minimote/packet/minimote_packet.c.i
+
+.PHONY : src/minimote/packet/minimote_packet.i
+
+# target to preprocess a source file
+src/minimote/packet/minimote_packet.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.i
+.PHONY : src/minimote/packet/minimote_packet.c.i
+
+src/minimote/packet/minimote_packet.s: src/minimote/packet/minimote_packet.c.s
+
+.PHONY : src/minimote/packet/minimote_packet.s
+
+# target to generate assembly for a file
+src/minimote/packet/minimote_packet.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.s
+.PHONY : src/minimote/packet/minimote_packet.c.s
+
+src/minimote/packet/type/minimote_packet_type.o: src/minimote/packet/type/minimote_packet_type.c.o
+
+.PHONY : src/minimote/packet/type/minimote_packet_type.o
+
+# target to build an object file
+src/minimote/packet/type/minimote_packet_type.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o
+.PHONY : src/minimote/packet/type/minimote_packet_type.c.o
+
+src/minimote/packet/type/minimote_packet_type.i: src/minimote/packet/type/minimote_packet_type.c.i
+
+.PHONY : src/minimote/packet/type/minimote_packet_type.i
+
+# target to preprocess a source file
+src/minimote/packet/type/minimote_packet_type.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.i
+.PHONY : src/minimote/packet/type/minimote_packet_type.c.i
+
+src/minimote/packet/type/minimote_packet_type.s: src/minimote/packet/type/minimote_packet_type.c.s
+
+.PHONY : src/minimote/packet/type/minimote_packet_type.s
+
+# target to generate assembly for a file
+src/minimote/packet/type/minimote_packet_type.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.s
+.PHONY : src/minimote/packet/type/minimote_packet_type.c.s
+
+src/minimote/server/minimote_server.o: src/minimote/server/minimote_server.c.o
+
+.PHONY : src/minimote/server/minimote_server.o
+
+# target to build an object file
+src/minimote/server/minimote_server.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o
+.PHONY : src/minimote/server/minimote_server.c.o
+
+src/minimote/server/minimote_server.i: src/minimote/server/minimote_server.c.i
+
+.PHONY : src/minimote/server/minimote_server.i
+
+# target to preprocess a source file
+src/minimote/server/minimote_server.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.i
+.PHONY : src/minimote/server/minimote_server.c.i
+
+src/minimote/server/minimote_server.s: src/minimote/server/minimote_server.c.s
+
+.PHONY : src/minimote/server/minimote_server.s
+
+# target to generate assembly for a file
+src/minimote/server/minimote_server.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s
+.PHONY : src/minimote/server/minimote_server.c.s
+
+src/minimote/x11/minimote_x11.o: src/minimote/x11/minimote_x11.c.o
+
+.PHONY : src/minimote/x11/minimote_x11.o
+
+# target to build an object file
+src/minimote/x11/minimote_x11.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o
+.PHONY : src/minimote/x11/minimote_x11.c.o
+
+src/minimote/x11/minimote_x11.i: src/minimote/x11/minimote_x11.c.i
+
+.PHONY : src/minimote/x11/minimote_x11.i
+
+# target to preprocess a source file
+src/minimote/x11/minimote_x11.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.i
+.PHONY : src/minimote/x11/minimote_x11.c.i
+
+src/minimote/x11/minimote_x11.s: src/minimote/x11/minimote_x11.c.s
+
+.PHONY : src/minimote/x11/minimote_x11.s
+
+# target to generate assembly for a file
+src/minimote/x11/minimote_x11.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.s
+.PHONY : src/minimote/x11/minimote_x11.c.s
 
 # Help Target
 help:
@@ -321,27 +429,39 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... MinimoteServer"
 	@echo "... edit_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... minimote_controller.o"
-	@echo "... minimote_controller.i"
-	@echo "... minimote_controller.s"
-	@echo "... minimote_packet.o"
-	@echo "... minimote_packet.i"
-	@echo "... minimote_packet.s"
-	@echo "... minimote_packet_type.o"
-	@echo "... minimote_packet_type.i"
-	@echo "... minimote_packet_type.s"
-	@echo "... minimote_server.o"
-	@echo "... minimote_server.i"
-	@echo "... minimote_server.s"
-	@echo "... minimote_utils.o"
-	@echo "... minimote_utils.i"
-	@echo "... minimote_utils.s"
-	@echo "... minimote_x11.o"
-	@echo "... minimote_x11.i"
-	@echo "... minimote_x11.s"
+	@echo "... src/adt/hash/hash.o"
+	@echo "... src/adt/hash/hash.i"
+	@echo "... src/adt/hash/hash.s"
+	@echo "... src/adt/hash/node/hash_node.o"
+	@echo "... src/adt/hash/node/hash_node.i"
+	@echo "... src/adt/hash/node/hash_node.s"
+	@echo "... src/adt/list/list.o"
+	@echo "... src/adt/list/list.i"
+	@echo "... src/adt/list/list.s"
+	@echo "... src/adt/list/node/list_node.o"
+	@echo "... src/adt/list/node/list_node.i"
+	@echo "... src/adt/list/node/list_node.s"
+	@echo "... src/commons/utils/byte_utils.o"
+	@echo "... src/commons/utils/byte_utils.i"
+	@echo "... src/commons/utils/byte_utils.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/minimote/controller/minimote_controller.o"
+	@echo "... src/minimote/controller/minimote_controller.i"
+	@echo "... src/minimote/controller/minimote_controller.s"
+	@echo "... src/minimote/packet/minimote_packet.o"
+	@echo "... src/minimote/packet/minimote_packet.i"
+	@echo "... src/minimote/packet/minimote_packet.s"
+	@echo "... src/minimote/packet/type/minimote_packet_type.o"
+	@echo "... src/minimote/packet/type/minimote_packet_type.i"
+	@echo "... src/minimote/packet/type/minimote_packet_type.s"
+	@echo "... src/minimote/server/minimote_server.o"
+	@echo "... src/minimote/server/minimote_server.i"
+	@echo "... src/minimote/server/minimote_server.s"
+	@echo "... src/minimote/x11/minimote_x11.o"
+	@echo "... src/minimote/x11/minimote_x11.i"
+	@echo "... src/minimote/x11/minimote_x11.s"
 .PHONY : help
 
 

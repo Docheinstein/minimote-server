@@ -57,120 +57,180 @@ include CMakeFiles/MinimoteServer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/MinimoteServer.dir/flags.make
 
-CMakeFiles/MinimoteServer.dir/main.c.o: CMakeFiles/MinimoteServer.dir/flags.make
-CMakeFiles/MinimoteServer.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/MinimoteServer.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/main.c.o   -c /home/stefano/Develop/C/MinimoteServer/main.c
+CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o: ../src/adt/hash/hash.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/adt/hash/hash.c
 
-CMakeFiles/MinimoteServer.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/main.c > CMakeFiles/MinimoteServer.dir/main.c.i
+CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/adt/hash/hash.c > CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.i
 
-CMakeFiles/MinimoteServer.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/main.c -o CMakeFiles/MinimoteServer.dir/main.c.s
+CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/adt/hash/hash.c -o CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.s
 
-CMakeFiles/MinimoteServer.dir/minimote_server.c.o: CMakeFiles/MinimoteServer.dir/flags.make
-CMakeFiles/MinimoteServer.dir/minimote_server.c.o: ../minimote_server.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/MinimoteServer.dir/minimote_server.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/minimote_server.c.o   -c /home/stefano/Develop/C/MinimoteServer/minimote_server.c
+CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o: ../src/adt/hash/node/hash_node.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/adt/hash/node/hash_node.c
 
-CMakeFiles/MinimoteServer.dir/minimote_server.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/minimote_server.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/minimote_server.c > CMakeFiles/MinimoteServer.dir/minimote_server.c.i
+CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/adt/hash/node/hash_node.c > CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.i
 
-CMakeFiles/MinimoteServer.dir/minimote_server.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/minimote_server.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/minimote_server.c -o CMakeFiles/MinimoteServer.dir/minimote_server.c.s
+CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/adt/hash/node/hash_node.c -o CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.s
 
-CMakeFiles/MinimoteServer.dir/minimote_utils.c.o: CMakeFiles/MinimoteServer.dir/flags.make
-CMakeFiles/MinimoteServer.dir/minimote_utils.c.o: ../minimote_utils.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/MinimoteServer.dir/minimote_utils.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/minimote_utils.c.o   -c /home/stefano/Develop/C/MinimoteServer/minimote_utils.c
+CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o: ../src/adt/list/list.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/adt/list/list.c
 
-CMakeFiles/MinimoteServer.dir/minimote_utils.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/minimote_utils.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/minimote_utils.c > CMakeFiles/MinimoteServer.dir/minimote_utils.c.i
+CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/adt/list/list.c > CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.i
 
-CMakeFiles/MinimoteServer.dir/minimote_utils.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/minimote_utils.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/minimote_utils.c -o CMakeFiles/MinimoteServer.dir/minimote_utils.c.s
+CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/adt/list/list.c -o CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.s
 
-CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o: CMakeFiles/MinimoteServer.dir/flags.make
-CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o: ../minimote_packet_type.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o   -c /home/stefano/Develop/C/MinimoteServer/minimote_packet_type.c
+CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o: ../src/adt/list/node/list_node.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/adt/list/node/list_node.c
 
-CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/minimote_packet_type.c > CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.i
+CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/adt/list/node/list_node.c > CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.i
 
-CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/minimote_packet_type.c -o CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.s
+CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/adt/list/node/list_node.c -o CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.s
 
-CMakeFiles/MinimoteServer.dir/minimote_packet.c.o: CMakeFiles/MinimoteServer.dir/flags.make
-CMakeFiles/MinimoteServer.dir/minimote_packet.c.o: ../minimote_packet.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/MinimoteServer.dir/minimote_packet.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/minimote_packet.c.o   -c /home/stefano/Develop/C/MinimoteServer/minimote_packet.c
+CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o: ../src/commons/utils/byte_utils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.c
 
-CMakeFiles/MinimoteServer.dir/minimote_packet.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/minimote_packet.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/minimote_packet.c > CMakeFiles/MinimoteServer.dir/minimote_packet.c.i
+CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.c > CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.i
 
-CMakeFiles/MinimoteServer.dir/minimote_packet.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/minimote_packet.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/minimote_packet.c -o CMakeFiles/MinimoteServer.dir/minimote_packet.c.s
+CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.c -o CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.s
 
-CMakeFiles/MinimoteServer.dir/minimote_x11.c.o: CMakeFiles/MinimoteServer.dir/flags.make
-CMakeFiles/MinimoteServer.dir/minimote_x11.c.o: ../minimote_x11.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/MinimoteServer.dir/minimote_x11.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/minimote_x11.c.o   -c /home/stefano/Develop/C/MinimoteServer/minimote_x11.c
+CMakeFiles/MinimoteServer.dir/src/main.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/MinimoteServer.dir/src/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/main.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/main.c
 
-CMakeFiles/MinimoteServer.dir/minimote_x11.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/minimote_x11.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/minimote_x11.c > CMakeFiles/MinimoteServer.dir/minimote_x11.c.i
+CMakeFiles/MinimoteServer.dir/src/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/main.c > CMakeFiles/MinimoteServer.dir/src/main.c.i
 
-CMakeFiles/MinimoteServer.dir/minimote_x11.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/minimote_x11.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/minimote_x11.c -o CMakeFiles/MinimoteServer.dir/minimote_x11.c.s
+CMakeFiles/MinimoteServer.dir/src/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/main.c -o CMakeFiles/MinimoteServer.dir/src/main.c.s
 
-CMakeFiles/MinimoteServer.dir/minimote_controller.c.o: CMakeFiles/MinimoteServer.dir/flags.make
-CMakeFiles/MinimoteServer.dir/minimote_controller.c.o: ../minimote_controller.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/MinimoteServer.dir/minimote_controller.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/minimote_controller.c.o   -c /home/stefano/Develop/C/MinimoteServer/minimote_controller.c
+CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: ../src/minimote/controller/minimote_controller.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/minimote/controller/minimote_controller.c
 
-CMakeFiles/MinimoteServer.dir/minimote_controller.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/minimote_controller.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/minimote_controller.c > CMakeFiles/MinimoteServer.dir/minimote_controller.c.i
+CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/minimote/controller/minimote_controller.c > CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.i
 
-CMakeFiles/MinimoteServer.dir/minimote_controller.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/minimote_controller.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/minimote_controller.c -o CMakeFiles/MinimoteServer.dir/minimote_controller.c.s
+CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/minimote/controller/minimote_controller.c -o CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.s
+
+CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o: ../src/minimote/packet/minimote_packet.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.c
+
+CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.c > CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.i
+
+CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.c -o CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.s
+
+CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o: ../src/minimote/packet/type/minimote_packet_type.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/type/minimote_packet_type.c
+
+CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/type/minimote_packet_type.c > CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.i
+
+CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/type/minimote_packet_type.c -o CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.s
+
+CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/minimote/server/minimote_server.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.c
+
+CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.c > CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.i
+
+CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.c -o CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s
+
+CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/x11/minimote_x11.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c
+
+CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c > CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.i
+
+CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c -o CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.s
 
 # Object files for target MinimoteServer
 MinimoteServer_OBJECTS = \
-"CMakeFiles/MinimoteServer.dir/main.c.o" \
-"CMakeFiles/MinimoteServer.dir/minimote_server.c.o" \
-"CMakeFiles/MinimoteServer.dir/minimote_utils.c.o" \
-"CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o" \
-"CMakeFiles/MinimoteServer.dir/minimote_packet.c.o" \
-"CMakeFiles/MinimoteServer.dir/minimote_x11.c.o" \
-"CMakeFiles/MinimoteServer.dir/minimote_controller.c.o"
+"CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/main.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o"
 
 # External object files for target MinimoteServer
 MinimoteServer_EXTERNAL_OBJECTS =
 
-MinimoteServer: CMakeFiles/MinimoteServer.dir/main.c.o
-MinimoteServer: CMakeFiles/MinimoteServer.dir/minimote_server.c.o
-MinimoteServer: CMakeFiles/MinimoteServer.dir/minimote_utils.c.o
-MinimoteServer: CMakeFiles/MinimoteServer.dir/minimote_packet_type.c.o
-MinimoteServer: CMakeFiles/MinimoteServer.dir/minimote_packet.c.o
-MinimoteServer: CMakeFiles/MinimoteServer.dir/minimote_x11.c.o
-MinimoteServer: CMakeFiles/MinimoteServer.dir/minimote_controller.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/main.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o
 MinimoteServer: CMakeFiles/MinimoteServer.dir/build.make
 MinimoteServer: CMakeFiles/MinimoteServer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable MinimoteServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C executable MinimoteServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MinimoteServer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
