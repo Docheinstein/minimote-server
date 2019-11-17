@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+../src/adt/hash/hash.h
+adt/list/list.h
+../src/adt/hash/adt/list/list.h
+adt/hash/node/hash_node.h
+../src/adt/hash/adt/hash/node/hash_node.h
+commons/globals.h
+../src/adt/hash/commons/globals.h
+
+../src/adt/hash/node/hash_node.h
+
 ../src/adt/list/list.h
 commons/globals.h
 -
@@ -31,6 +41,8 @@ minimote/x11/minimote_x11.h
 ../src/minimote/x11/minimote_x11.h
 X11/Xlib.h
 -
+adt/hash/hash.h
+../src/minimote/x11/adt/hash/hash.h
 commons/globals.h
 ../src/minimote/x11/commons/globals.h
 
@@ -49,34 +61,12 @@ pthread.h
 -
 commons/utils/byte_utils.h
 /home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.h
+string.h
+-
 
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.h
 minimote/controller/minimote_controller.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote/controller/minimote_controller.h
 commons/globals.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/commons/globals.h
-
-/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c
-minimote_x11.h
-/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.h
-stdio.h
--
-stdlib.h
--
-stdbool.h
--
-X11/Xutil.h
--
-X11/extensions/XTest.h
--
-adt/list/list.h
-/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/adt/list/list.h
-X11/keysymdef.h
--
-
-/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.h
-X11/Xlib.h
--
-commons/globals.h
-/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/commons/globals.h
 

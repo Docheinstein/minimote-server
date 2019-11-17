@@ -17,6 +17,7 @@ void hash_init(hash *hash, int capacity,
         bool (*key_eq_func) (void *k1, void *k2));
 
 void hash_put(hash *hash, void *key, void *value);
+void hash_put_if_not_exists(hash *hash, void *key, void *value);
 
 void * hash_get(hash *hash, void *key);
 
