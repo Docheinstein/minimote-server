@@ -32,8 +32,12 @@ const char * minimote_packet_type_to_string(minimote_packet_type type) {
             return "KEY_UP";
         case KEY_CLICK:
             return "KEY_CLICK";
-        case KEYS:
-            return "KEYS";
+        case SPECIAL_KEY_DOWN:
+            return "SPECIAL_KEY_DOWN";
+        case SPECIAL_KEY_UP:
+            return "SPECIAL_KEY_UP";
+        case SPECIAL_KEY_CLICK:
+            return "SPECIAL_KEY_CLICK";
         case DISCOVER:
             return "DISCOVER";
         default:

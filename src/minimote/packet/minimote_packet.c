@@ -2,13 +2,16 @@
 #include "commons/utils/byte_utils.h"
 #include <stdio.h>
 
-#define HEADER_SIZE 8
 
-void minimote_packet_parse(minimote_packet *packet, byte * bytes, int bytecount) {
-    packet->event_type = bytes[0];
-    packet->event_time = bytes_to_uint64(bytes) & 0xFFFFFFFFFFFFFFU;
-    packet->payload = &bytes[HEADER_SIZE];
-    packet->payload_length = bytecount - HEADER_SIZE;
+// Returns the difference between the real packet byte count and the expected byte count.
+// Thus returns 0 if the packet has the expected length
+int minimote_packet_parse(minimote_packet *packet, byte * bytes, int bytecount) {
+    packet->expected_packet_length = bytes[0];
+    packet->event_type = bytes[1];
+    packet->event_time = bytes_to_uint64(bytes) & 0xFFFFFFFFFFFFFU;
+    packet->payload = &bytes[MINIMOTE_PACKET_HEADER_SIZE];
+
+   return bytecount - packet->expected_packet_length;
 }
 
 void minimote_packet_dump(minimote_packet *packet) {
@@ -19,7 +22,7 @@ void minimote_packet_dump(minimote_packet *packet) {
 
     char bits[9];
 
-    for (int i = 0; i < packet->payload_length; i++) {
+    for (int i = 0; i < packet->expected_packet_length - MINIMOTE_PACKET_HEADER_SIZE; i++) {
         printf("%s | ", byte_to_bin(packet->payload[i], bits));
     }
 

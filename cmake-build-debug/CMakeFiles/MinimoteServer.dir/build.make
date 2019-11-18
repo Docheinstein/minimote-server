@@ -187,9 +187,22 @@ CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s: cmake_for
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.c -o CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s
 
+CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o: CMakeFiles/MinimoteServer.dir/flags.make
+CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o: ../src/minimote/special_keys/keymap/minimote_special_keymap.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.c
+
+CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.c > CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.i
+
+CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.c -o CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.s
+
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: CMakeFiles/MinimoteServer.dir/flags.make
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/x11/minimote_x11.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o   -c /home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c
 
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.i: cmake_force
@@ -212,6 +225,7 @@ MinimoteServer_OBJECTS = \
 "CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o" \
 "CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o" \
 "CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o" \
+"CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o" \
 "CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o"
 
 # External object files for target MinimoteServer
@@ -227,10 +241,11 @@ MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_c
 MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o
 MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o
 MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o
+MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o
 MinimoteServer: CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o
 MinimoteServer: CMakeFiles/MinimoteServer.dir/build.make
 MinimoteServer: CMakeFiles/MinimoteServer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C executable MinimoteServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking C executable MinimoteServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MinimoteServer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

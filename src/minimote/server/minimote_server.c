@@ -7,6 +7,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <pthread.h>
+#include <hdf5_hl.h>
 
 #include "commons/globals.h"
 #include "commons/utils/byte_utils.h"
@@ -16,6 +17,85 @@
 
 static void minimote_server_handle_packet(  minimote_controller *controller,
                                             minimote_packet *packet);
+
+static void tcp_buffer_major_swap(minimote_server *server) {
+    // The current situation would be something like this
+    // | -- garbabe ------------------------ (S) ---- (E) -- |
+    // And will become
+    // (S) ---- (E) -----------------------------------------|
+
+    printf("Performing a buffer major swap | tcp_buffer_start = %d, tcp_buffer_end = %d\n",
+           server->tcp_buffer_start, server->tcp_buffer_end);
+    int current_buffer_size = server->tcp_buffer_end - server->tcp_buffer_start;
+
+    byte tmp[MINIMOTE_SERVER_TCP_BUFFER_SIZE];
+    memcpy(tmp, &server->tcp_buffer[server->tcp_buffer_start], current_buffer_size);
+    // No need to memset to 0, actually
+//    bzero(server->tcp_buffer, 0, MINIMOTE_SERVER_TCP_BUFFER_SIZE);
+    memcpy(server->tcp_buffer, tmp, MINIMOTE_SERVER_TCP_BUFFER_SIZE);
+    server->tcp_buffer_start = 0;
+    server->tcp_buffer_end = current_buffer_size;
+
+    printf("Post swap tcp_buffer_start = %d, tcp_buffer_end = %d\n",
+           server->tcp_buffer_start, server->tcp_buffer_end);
+}
+
+static void push_tcp_stream_in_buffer(minimote_server *server, byte *stream, int stream_length) {
+    printf("Pushing into TCP buffer %d bytes at pos %d\n", stream_length, server->tcp_buffer_end);
+
+    if (server->tcp_buffer_end + stream_length >= MINIMOTE_SERVER_TCP_BUFFER_SIZE) {
+        // The ideal would be to implemented a circular buffer, for now
+        // we do a major buffer swap when the buffer reaches the end by
+        // copying the current content the the beginning of the buffer
+        tcp_buffer_major_swap(server);
+
+        if (server->tcp_buffer_end + stream_length >= MINIMOTE_SERVER_TCP_BUFFER_SIZE) {
+            fprintf(stderr, "TCP Buffer full anyway!!\n");
+            return;
+        }
+    }
+    // Push at the end and advance the needle
+    memcpy(&server->tcp_buffer[server->tcp_buffer_end], stream, stream_length);
+    server->tcp_buffer_end += stream_length;
+
+    printf("Current tcp_buffer_start = %d, tcp_buffer_end = %d\n",
+            server->tcp_buffer_start, server->tcp_buffer_end);
+}
+
+static bool try_handle_tcp_buffer(minimote_server *server) {
+    if (server->tcp_buffer_end - server->tcp_buffer_start < MINIMOTE_PACKET_MINIMUM_SIZE) {
+        printf("Nothing to handle yet\n");
+        return false;
+    }
+
+    printf("The buffer contains enough bytes (%d), try handling from %d\n",
+            server->tcp_buffer_end - server->tcp_buffer_start, server->tcp_buffer_start);
+
+    minimote_packet packet;
+
+    int surplus = minimote_packet_parse(
+            &packet,
+            &server->tcp_buffer[server->tcp_buffer_start],
+            server->tcp_buffer_end - server->tcp_buffer_start);
+
+    if (surplus < 0) {
+        printf("Not enough data for make a valid packet, waiting for new data...\n");
+        return false;
+    }
+
+    printf("Can handle packet (surplus = %d)\n", surplus);
+
+    // Advance the needle by the byte actually used by the packet
+    server->tcp_buffer_start += packet.expected_packet_length;
+
+    printf("Current tcp_buffer_start = %d, tcp_buffer_end = %d\n",
+           server->tcp_buffer_start, server->tcp_buffer_end);
+
+    minimote_packet_dump(&packet);
+    minimote_server_handle_packet(&server->controller, &packet);
+
+    return true;
+}
 
 typedef struct minimote_server_handle_tcp_client_arg_t {
     minimote_server *server;
@@ -46,11 +126,10 @@ static void * minimote_server_handle_tcp_client(void *voidarg) {
                 received_bufflen,
                arg->connectionfd);
 
-        minimote_packet packet;
-        minimote_packet_parse(&packet, buffer, received_bufflen);
-        minimote_packet_dump(&packet);
+        // Push into the buffer
+        push_tcp_stream_in_buffer(arg->server, buffer, received_bufflen);
 
-        minimote_server_handle_packet(&arg->server->controller, &packet);
+        while (try_handle_tcp_buffer(arg->server));
     }
 
     close(arg->connectionfd);
@@ -67,6 +146,9 @@ void minimote_server_init(minimote_server *server,
     server->udp_port = udp_port;
     server->tcp_port = tcp_port;
     minimote_controller_init(&server->controller);
+    memset(server->tcp_buffer, 0, MINIMOTE_SERVER_TCP_BUFFER_SIZE);
+    server->tcp_buffer_start = 0;
+    server->tcp_buffer_end = 0;
 }
 
 void minimote_server_start_tcp(minimote_server *server) {
@@ -232,8 +314,27 @@ void minimote_server_handle_packet( minimote_controller *controller,
             minimote_controller_scroll_down(controller);
             break;
         case KEY_CLICK: {
+            if (packet->expected_packet_length - MINIMOTE_PACKET_HEADER_SIZE > 1) {
+                fprintf(stderr, "Cannot handle yet, key too complex\n");
+                break;
+            }
             uint8 payload_value = bytes_to_uint8(packet->payload);
             minimote_controller_key_click(controller, payload_value);
+            break;
+        }
+        case SPECIAL_KEY_DOWN: {
+            uint8 payload_value = bytes_to_uint8(packet->payload);
+            minimote_controller_special_key_down(controller, (minimote_special_key_type) payload_value);
+            break;
+        }
+        case SPECIAL_KEY_UP: {
+            uint8 payload_value = bytes_to_uint8(packet->payload);
+            minimote_controller_special_key_up(controller, (minimote_special_key_type) payload_value);
+            break;
+        }
+        case SPECIAL_KEY_CLICK: {
+            uint8 payload_value = bytes_to_uint8(packet->payload);
+            minimote_controller_special_key_click(controller, (minimote_special_key_type) payload_value);
             break;
         }
         default:

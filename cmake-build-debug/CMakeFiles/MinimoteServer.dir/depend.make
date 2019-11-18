@@ -29,6 +29,7 @@ CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/adt/list/list.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/adt/list/node/list_node.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/commons/globals.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/minimote/controller/minimote_controller.h
+CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/minimote/special_keys/type/minimote_special_key_type.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/minimote/x11/minimote_x11.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/commons/utils/byte_utils.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/main.c
@@ -39,6 +40,7 @@ CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: .
 CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: ../src/adt/list/list.h
 CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: ../src/adt/list/node/list_node.h
 CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: ../src/commons/globals.h
+CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: ../src/minimote/special_keys/type/minimote_special_key_type.h
 CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: ../src/minimote/x11/minimote_x11.h
 CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: ../src/minimote/controller/minimote_controller.c
 CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o: ../src/minimote/controller/minimote_controller.h
@@ -61,15 +63,22 @@ CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/co
 CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/minimote/controller/minimote_controller.h
 CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/minimote/packet/minimote_packet.h
 CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/minimote/packet/type/minimote_packet_type.h
+CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/minimote/special_keys/type/minimote_special_key_type.h
 CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/minimote/x11/minimote_x11.h
 CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/minimote/server/minimote_server.c
 CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o: ../src/minimote/server/minimote_server.h
+
+CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o: ../src/minimote/special_keys/type/minimote_special_key_type.h
+CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o: ../src/minimote/special_keys/keymap/minimote_special_keymap.c
+CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o: ../src/minimote/special_keys/keymap/minimote_special_keymap.h
 
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/adt/hash/hash.h
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/adt/hash/node/hash_node.h
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/adt/list/list.h
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/adt/list/node/list_node.h
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/commons/globals.h
+CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/special_keys/keymap/minimote_special_keymap.h
+CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/special_keys/type/minimote_special_key_type.h
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/x11/minimote_x11.c
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/x11/minimote_x11.h
 

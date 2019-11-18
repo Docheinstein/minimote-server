@@ -138,6 +138,15 @@
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/type/minimote_special_key_type.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c">
 			<Option target="MinimoteServer"/>
 		</Unit>

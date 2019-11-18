@@ -29,20 +29,35 @@ void msleep(long msec) {
 }
 
 int main(int argc, char *argv[]) {
-    minimote_x11 x11;
-    minimote_x11_init(&x11);
+//    minimote_x11 x11;
+//    minimote_x11_init(&x11);
+////    minimote_x11_special_key_down(&x11, CTRL_LEFT);
+////    msleep(50);
+////    minimote_x11_key_click(&x11, 'd');
+////    msleep(50);
+////    minimote_x11_special_key_up(&x11, CTRL_LEFT);
+//    minimote_x11_special_key_click(&x11, BACKSPACE);
+//    return 0;
 //    minimote_x11_key_click(&x11, 0x00e8); // egrave
 //    minimote_x11_key_click(&x11, 0x0061); // a
 
-    const char * str = "This is [ a function ], followed by { another function }";
-    msleep(3000);
+//    0x20ac
 
-    for (int i = 0; i < strlen(str); i++) {
-        char c = str[i];
-        minimote_x11_key_click(&x11, c);
-        msleep(50);
-    }
-    return -1;
+//    const char * ch = "€";
+//    printf("Str is len: %lu\n", strlen(ch));
+//
+//    msleep(1000);
+//
+//    uint32 kc = 0;
+//    for (ulong i = 0; i < strlen(ch); i++) {
+//        char bin[9];
+//        printf("ch[i]: %s\n", byte_to_bin(ch[i], bin));
+//        kc |= ((byte) ch[i]) << (8 * i);
+//    }
+//
+//    minimote_x11_key_click(&x11, kc);
+//
+//    return -1;
     minimote_server server;
     minimote_server_init(&server, 50500, 50500);
 

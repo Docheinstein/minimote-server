@@ -393,6 +393,33 @@ src/minimote/server/minimote_server.c.s:
 	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s
 .PHONY : src/minimote/server/minimote_server.c.s
 
+src/minimote/special_keys/keymap/minimote_special_keymap.o: src/minimote/special_keys/keymap/minimote_special_keymap.c.o
+
+.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.o
+
+# target to build an object file
+src/minimote/special_keys/keymap/minimote_special_keymap.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o
+.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.c.o
+
+src/minimote/special_keys/keymap/minimote_special_keymap.i: src/minimote/special_keys/keymap/minimote_special_keymap.c.i
+
+.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.i
+
+# target to preprocess a source file
+src/minimote/special_keys/keymap/minimote_special_keymap.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.i
+.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.c.i
+
+src/minimote/special_keys/keymap/minimote_special_keymap.s: src/minimote/special_keys/keymap/minimote_special_keymap.c.s
+
+.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.s
+
+# target to generate assembly for a file
+src/minimote/special_keys/keymap/minimote_special_keymap.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.s
+.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.c.s
+
 src/minimote/x11/minimote_x11.o: src/minimote/x11/minimote_x11.c.o
 
 .PHONY : src/minimote/x11/minimote_x11.o
@@ -459,6 +486,9 @@ help:
 	@echo "... src/minimote/server/minimote_server.o"
 	@echo "... src/minimote/server/minimote_server.i"
 	@echo "... src/minimote/server/minimote_server.s"
+	@echo "... src/minimote/special_keys/keymap/minimote_special_keymap.o"
+	@echo "... src/minimote/special_keys/keymap/minimote_special_keymap.i"
+	@echo "... src/minimote/special_keys/keymap/minimote_special_keymap.s"
 	@echo "... src/minimote/x11/minimote_x11.o"
 	@echo "... src/minimote/x11/minimote_x11.i"
 	@echo "... src/minimote/x11/minimote_x11.s"

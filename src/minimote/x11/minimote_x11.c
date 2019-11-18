@@ -5,7 +5,7 @@
 #include <X11/Xutil.h>
 #include <X11/extensions/XTest.h>
 #include "adt/list/list.h"
-#include <X11/keysymdef.h>
+#include <minimote/special_keys/keymap/minimote_special_keymap.h>
 
 #define KEYSYM_POS_MODIFIER_NONE        0
 #define KEYSYM_POS_MODIFIER_SHIFTED     1
@@ -115,14 +115,15 @@ static void print_keycode(void *arg) {
 }
 
 void minimote_x11_key_click(minimote_x11 *mx, uint32 unicode_key) {
-    // Retrieve the keystroke (keycode + modifier) from the keymap
+
+    // Retrieve the keystroke (keycode + modifier) from the special_keys
     KeySym *k = malloc(sizeof(KeySym));
     *k = unicode_key;
     keystroke *ks = hash_get(&mx->keymap, k);
     free(k);
 
     if (!ks) {
-        fprintf(stderr, "Unknown key for this layout %d\n", unicode_key);
+        fprintf(stderr, "Unknown key for this layout %u\n", unicode_key);
         return;
     }
 
@@ -252,6 +253,40 @@ void minimote_x11_key_click(minimote_x11 *mx, uint32 unicode_key) {
 #endif
 }
 
+void minimote_x11_special_key_down(minimote_x11 *mx, minimote_special_key_type special_key) {
+    KeySym k = SPECIAL_KEY_MAP[special_key];
+    keystroke *ks = hash_get(&mx->keymap, &k);
+
+    if (!ks) {
+        fprintf(stderr, "Unknown keysym: %lu\n", k);
+        return;
+    }
+    printf("Special key down\n");
+    printf("- keysym = %lu\n", k);
+    printf("- keycode = %d\n", ks->keycode);
+    keyboard_key_down(mx, ks->keycode);
+}
+
+void minimote_x11_special_key_up(minimote_x11 *mx, minimote_special_key_type special_key) {
+    KeySym k = SPECIAL_KEY_MAP[special_key];
+    keystroke *ks = hash_get(&mx->keymap, &k);
+
+    if (!ks) {
+        fprintf(stderr, "Unknown keysym: %lu", k);
+        return;
+    }
+
+    printf("Special key up\n");
+    printf("- keysym = %lu\n", k);
+    printf("- keycode = %d\n", ks->keycode);
+    keyboard_key_up(mx, ks->keycode);
+}
+
+void minimote_x11_special_key_click(minimote_x11 *mx, minimote_special_key_type special_key) {
+    minimote_x11_special_key_down(mx, special_key);
+    minimote_x11_special_key_up(mx, special_key);
+}
+
 // _________________________________________________________
 
 void mouse_button_down(minimote_x11 *mx, unsigned int button) {
@@ -321,7 +356,6 @@ void retrieve_keymap(minimote_x11 *mx) {
 
 //    list available_keys;
 //    list_init(&available_keys);
-
     for (int keycode = lowest_key; keycode <= highest_key; keycode++) {
 //        bool key_empty = true;
         for (int modifier = 0; modifier <= keysyms_per_keycode; modifier++) {
@@ -391,7 +425,6 @@ void keyboard_key_up(minimote_x11 *mx, unsigned int keycode) {
     XTestFakeKeyEvent(mx->display, keycode, False, 0);
     XFlush(mx->display);
 }
-
 
 uint32 keys_hash_func(void *data) {
     KeySym *k = data;
