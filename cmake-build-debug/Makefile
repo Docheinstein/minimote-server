@@ -258,6 +258,60 @@ src/commons/utils/byte_utils.c.s:
 	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.s
 .PHONY : src/commons/utils/byte_utils.c.s
 
+src/commons/utils/net_utils.o: src/commons/utils/net_utils.c.o
+
+.PHONY : src/commons/utils/net_utils.o
+
+# target to build an object file
+src/commons/utils/net_utils.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/net_utils.c.o
+.PHONY : src/commons/utils/net_utils.c.o
+
+src/commons/utils/net_utils.i: src/commons/utils/net_utils.c.i
+
+.PHONY : src/commons/utils/net_utils.i
+
+# target to preprocess a source file
+src/commons/utils/net_utils.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/net_utils.c.i
+.PHONY : src/commons/utils/net_utils.c.i
+
+src/commons/utils/net_utils.s: src/commons/utils/net_utils.c.s
+
+.PHONY : src/commons/utils/net_utils.s
+
+# target to generate assembly for a file
+src/commons/utils/net_utils.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/net_utils.c.s
+.PHONY : src/commons/utils/net_utils.c.s
+
+src/commons/utils/time_utils.o: src/commons/utils/time_utils.c.o
+
+.PHONY : src/commons/utils/time_utils.o
+
+# target to build an object file
+src/commons/utils/time_utils.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/time_utils.c.o
+.PHONY : src/commons/utils/time_utils.c.o
+
+src/commons/utils/time_utils.i: src/commons/utils/time_utils.c.i
+
+.PHONY : src/commons/utils/time_utils.i
+
+# target to preprocess a source file
+src/commons/utils/time_utils.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/time_utils.c.i
+.PHONY : src/commons/utils/time_utils.c.i
+
+src/commons/utils/time_utils.s: src/commons/utils/time_utils.c.s
+
+.PHONY : src/commons/utils/time_utils.s
+
+# target to generate assembly for a file
+src/commons/utils/time_utils.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/commons/utils/time_utils.c.s
+.PHONY : src/commons/utils/time_utils.c.s
+
 src/main.o: src/main.c.o
 
 .PHONY : src/main.o
@@ -471,6 +525,12 @@ help:
 	@echo "... src/commons/utils/byte_utils.o"
 	@echo "... src/commons/utils/byte_utils.i"
 	@echo "... src/commons/utils/byte_utils.s"
+	@echo "... src/commons/utils/net_utils.o"
+	@echo "... src/commons/utils/net_utils.i"
+	@echo "... src/commons/utils/net_utils.s"
+	@echo "... src/commons/utils/time_utils.o"
+	@echo "... src/commons/utils/time_utils.i"
+	@echo "... src/commons/utils/time_utils.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -7,14 +7,18 @@
 #define MINIMOTE_SERVER_TCP_BUFFER_SIZE 128
 
 typedef struct minimote_server_t {
+    int tcp_socket;
     bool tcp_running;
-    bool udp_running;
     int tcp_port;
-    int udp_port;
-    minimote_controller controller;
     byte tcp_buffer[MINIMOTE_SERVER_TCP_BUFFER_SIZE];
     int tcp_buffer_start;
     int tcp_buffer_end;
+
+    int udp_socket;
+    bool udp_running;
+    int udp_port;
+
+    minimote_controller controller;
 } minimote_server;
 
 void minimote_server_init(minimote_server *server,

@@ -111,6 +111,18 @@
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/utils/net_utils.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/utils/net_utils.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/utils/time_utils.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/utils/time_utils.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/main.c">
 			<Option target="MinimoteServer"/>
 		</Unit>

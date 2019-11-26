@@ -23,12 +23,19 @@ CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o
  ../src/commons/globals.h
  /home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.c
  /home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.h
+CMakeFiles/MinimoteServer.dir/src/commons/utils/net_utils.c.o
+ /home/stefano/Develop/C/MinimoteServer/src/commons/utils/net_utils.c
+ /home/stefano/Develop/C/MinimoteServer/src/commons/utils/net_utils.h
+CMakeFiles/MinimoteServer.dir/src/commons/utils/time_utils.c.o
+ /home/stefano/Develop/C/MinimoteServer/src/commons/utils/time_utils.c
+ /home/stefano/Develop/C/MinimoteServer/src/commons/utils/time_utils.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o
  ../src/adt/hash/hash.h
  ../src/adt/hash/node/hash_node.h
  ../src/adt/list/list.h
  ../src/adt/list/node/list_node.h
  ../src/commons/globals.h
+ ../src/commons/utils/time_utils.h
  ../src/minimote/controller/minimote_controller.h
  ../src/minimote/special_keys/type/minimote_special_key_type.h
  ../src/minimote/x11/minimote_x11.h
@@ -48,6 +55,7 @@ CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o
 CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o
  ../src/commons/globals.h
  ../src/commons/utils/byte_utils.h
+ ../src/commons/utils/time_utils.h
  /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.c
  /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.h
  /home/stefano/Develop/C/MinimoteServer/src/minimote/packet/type/minimote_packet_type.h
@@ -61,6 +69,8 @@ CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o
  ../src/adt/list/node/list_node.h
  ../src/commons/globals.h
  ../src/commons/utils/byte_utils.h
+ ../src/commons/utils/net_utils.h
+ ../src/commons/utils/time_utils.h
  ../src/minimote/controller/minimote_controller.h
  ../src/minimote/packet/minimote_packet.h
  ../src/minimote/packet/type/minimote_packet_type.h
@@ -78,6 +88,7 @@ CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o
  ../src/adt/list/list.h
  ../src/adt/list/node/list_node.h
  ../src/commons/globals.h
+ ../src/commons/utils/time_utils.h
  ../src/minimote/special_keys/keymap/minimote_special_keymap.h
  ../src/minimote/special_keys/type/minimote_special_key_type.h
  /home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c

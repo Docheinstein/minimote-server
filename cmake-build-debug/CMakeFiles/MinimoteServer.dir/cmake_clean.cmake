@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o"
   "CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o"
   "CMakeFiles/MinimoteServer.dir/src/commons/utils/byte_utils.c.o"
+  "CMakeFiles/MinimoteServer.dir/src/commons/utils/net_utils.c.o"
+  "CMakeFiles/MinimoteServer.dir/src/commons/utils/time_utils.c.o"
   "CMakeFiles/MinimoteServer.dir/src/main.c.o"
   "CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o"
   "CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o"

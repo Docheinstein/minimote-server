@@ -6,6 +6,8 @@
 #include <X11/extensions/XTest.h>
 #include "adt/list/list.h"
 #include <minimote/special_keys/keymap/minimote_special_keymap.h>
+#include <string.h>
+#include <commons/utils/time_utils.h>
 
 #define KEYSYM_POS_MODIFIER_NONE        0
 #define KEYSYM_POS_MODIFIER_SHIFTED     1
@@ -28,6 +30,8 @@ static void mouse_button_click(minimote_x11 *mx, unsigned int button);
 
 static void keyboard_key_down(minimote_x11 *mx, unsigned int keycode);
 static void keyboard_key_up(minimote_x11 *mx, unsigned int keycode);
+
+static void take_screenshot(minimote_x11 *mx);
 
 static uint32 keys_hash_func(void *data);
 static bool keys_key_eq_func(void *hash_key1, void *hash_key2);
@@ -90,11 +94,12 @@ void minimote_x11_middle_click(minimote_x11 *mx) {
 }
 
 void minimote_x11_right_down(minimote_x11 *mx) {
-    mouse_button_down(mx, Button3);
+//    mouse_button_down(mx, Button3);
 }
 
 void minimote_x11_right_up(minimote_x11 *mx) {
-    mouse_button_up(mx, Button3);
+//    mouse_button_up(mx, Button3);
+    take_screenshot(mx);
 }
 
 void minimote_x11_right_click(minimote_x11 *mx) {
@@ -435,4 +440,133 @@ bool keys_key_eq_func(void *hash_key1, void *hash_key2) {
     KeySym k1 = *(KeySym *) hash_key1;
     KeySym k2 = *(KeySym *) hash_key2;
     return k1 == k2;
+}
+
+#define RGB_CHANS 3
+
+#define PPM_MAGIC_NUMBER "P6"
+#define PPM_RGB_DEPTH 255
+
+#define rgb_to_gray(r, g, b) \
+    (r * RGB_R_TO_GRAY_FACTOR + \
+     g * RGB_G_TO_GRAY_FACTOR + \
+     b * RGB_B_TO_GRAY_FACTOR)
+
+struct ppm_image_t {
+    int width;
+    int height;
+    int depth;
+    unsigned char *pixels;
+} typedef ppm_image;
+
+unsigned int ppm_image_bytes(ppm_image *img) {
+    return sizeof(unsigned char) * img->width * img->height * RGB_CHANS;
+}
+
+void ppm_image_write(ppm_image *ppm_image, const char *image_filename) {
+    printf("Writing PPM image %s...\n", image_filename);
+
+    printf("=====\n");
+
+    FILE *image_file = fopen(image_filename, "w");
+
+    // Used string definitions
+
+    const char *P_SIX = PPM_MAGIC_NUMBER;
+    const char *WS    = " ";
+    const char *NL    = "\n";
+
+    char WIDTH[16];
+    char HEIGHT[16];
+    char DEPTH[16];
+
+    sprintf(WIDTH, "%d", ppm_image->width);
+    sprintf(HEIGHT, "%d", ppm_image->height);
+    sprintf(DEPTH, "%d", ppm_image->depth);
+
+    // File writing
+
+    // P6 \n
+
+    fwrite(P_SIX, sizeof(char), strlen(P_SIX), image_file);
+    fwrite(NL, sizeof(char), strlen(NL), image_file);
+
+    // <width> <height> <depth> \n
+
+    fwrite(WIDTH, sizeof(char), strlen(WIDTH), image_file);
+    fwrite(WS, sizeof(char), strlen(WS), image_file);
+
+    fwrite(HEIGHT, sizeof(char), strlen(HEIGHT), image_file);
+    fwrite(WS, sizeof(char), strlen(WS), image_file);
+
+    fwrite(DEPTH, sizeof(char), strlen(DEPTH), image_file);
+    fwrite(NL, sizeof(char), strlen(NL), image_file);
+
+    // Pixels
+
+    fwrite(ppm_image->pixels, sizeof(unsigned char),
+           RGB_CHANS * ppm_image->width * ppm_image->height, image_file);
+
+    printf("Image %s has been written successfully\n", image_filename);
+
+    printf("=====\n");
+
+    fclose(image_file);
+}
+
+void take_screenshot(minimote_x11 *mx) {
+    long start = current_ms();
+
+    Window root = DefaultRootWindow(mx->display);
+
+    XWindowAttributes window_attrs;
+
+    XGetWindowAttributes(mx->display, root, &window_attrs);
+    int width = window_attrs.width;
+    int height = window_attrs.height;
+
+    int W = 400;
+    int H = 400;
+
+    XImage *ximg = XGetImage(mx->display, root, 0, 0, W, H, AllPlanes, XYPixmap);
+
+    long post_XGetImage = current_ms() - start;
+
+    printf("post_XGetImage: %lums\n", post_XGetImage);
+
+    unsigned long red_mask = ximg->red_mask;
+    unsigned long green_mask = ximg->green_mask;
+    unsigned long blue_mask = ximg->blue_mask;
+
+    ppm_image ppm;
+    ppm.width = W;
+    ppm.height = H;
+    ppm.depth = 255;
+    const uint image_byte_size = ppm_image_bytes(&ppm);
+    ppm.pixels = (unsigned char *) malloc(image_byte_size);
+
+    printf("Image size: %dB\n", image_byte_size);
+    printf("Image size: %dMB\n", image_byte_size / 1000000);
+
+    for (int x = 0; x < W; x++) {
+        for (int y = 0; y < H ; y++) {
+            unsigned long xpixel = XGetPixel(ximg, x, y);
+
+            unsigned char blue = xpixel & blue_mask;
+            unsigned char green = (xpixel & green_mask) >> 8;
+            unsigned char red = (xpixel & red_mask) >> 16;
+
+            ppm.pixels[(x + W * y) * 3] = red;
+            ppm.pixels[(x + W * y) * 3+1] = green;
+            ppm.pixels[(x + W * y) * 3+2] = blue;
+        }
+    }
+
+    long pre_write = current_ms() - start;
+    printf("Take screen: %lums\n", pre_write);
+
+    ppm_image_write(&ppm, "/tmp/_.screenshot.ppm");
+
+    long post_write = current_ms() - start;
+    printf("Take screen and write: %lums\n", post_write);
 }

@@ -36,6 +36,16 @@ stdbool.h
 commons/globals.h
 ../src/commons/utils/commons/globals.h
 
+../src/commons/utils/net_utils.h
+sys/socket.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+
+../src/commons/utils/time_utils.h
+
 ../src/minimote/controller/minimote_controller.h
 minimote/special_keys/type/minimote_special_key_type.h
 -
@@ -83,7 +93,9 @@ arpa/inet.h
 -
 pthread.h
 -
-hdf5_hl.h
+commons/utils/net_utils.h
+-
+commons/utils/time_utils.h
 -
 commons/globals.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/commons/globals.h
@@ -101,18 +113,4 @@ minimote/controller/minimote_controller.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote/controller/minimote_controller.h
 commons/globals.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/commons/globals.h
-
-/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.c
-minimote_special_keymap.h
-/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.h
-minimote/special_keys/type/minimote_special_key_type.h
-/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote/special_keys/type/minimote_special_key_type.h
-X11/Xutil.h
--
-
-/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.h
-X11/X.h
--
-minimote/special_keys/type/minimote_special_key_type.h
-/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote/special_keys/type/minimote_special_key_type.h
 

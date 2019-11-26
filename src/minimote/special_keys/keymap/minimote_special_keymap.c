@@ -18,6 +18,7 @@ KeySym SPECIAL_KEY_MAP[Z + 1] = {
     XK_Control_R,   // CTRL_RIGHT
     XK_Super_L,     // META_LEFT
     XK_Super_R,     // META_RIGHT
+    XK_ISO_Level3_Shift,     // ALT_GR
     XK_Caps_Lock,   // CAPS_LOCK
     XK_Escape,      // ESC
     XK_Tab,         // TAB
