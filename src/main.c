@@ -1,10 +1,12 @@
-#include "minimote/server/minimote_server.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "commons/utils/byte_utils.h"
 #include <string.h>
-#include <commons/utils/time_utils.h>
+#include "minimote/server/minimote_server.h"
+#include "commons/utils/byte_utils.h"
+#include "arguments/arguments.h"
+#include "logging/logging.h"
+#include "commons/conf/conf.h"
 
 static void * start_udp_server(void *arg) {
     minimote_server * server = (minimote_server *) arg;
@@ -21,39 +23,16 @@ static void * start_tcp_server(void *arg) {
 }
 
 int main(int argc, char *argv[]) {
-//    printf("current_ms %lu\n", current_ms());
-//    exit(0);
-//    minimote_x11 x11;
-//    minimote_x11_init(&x11);
-////    minimote_x11_special_key_down(&x11, CTRL_LEFT);
-////    msleep(50);
-////    minimote_x11_key_click(&x11, 'd');
-////    msleep(50);
-////    minimote_x11_special_key_up(&x11, CTRL_LEFT);
-//    minimote_x11_special_key_click(&x11, BACKSPACE);
-//    return 0;
-//    minimote_x11_key_click(&x11, 0x00e8); // egrave
-//    minimote_x11_key_click(&x11, 0x0061); // a
+    // Parse arguments
+    i("MinimoteServer version " MINIMOTE_SERVER_VERSION);
 
-//    0x20ac
+    d("Going to parse arguments");
+    arguments args = arguments_parse(argc, argv);
 
-//    const char * ch = "€";
-//    printf("Str is len: %lu\n", strlen(ch));
-//
-//    msleep(1000);
-//
-//    uint32 kc = 0;
-//    for (ulong i = 0; i < strlen(ch); i++) {
-//        char bin[9];
-//        printf("ch[i]: %s\n", byte_to_bin(ch[i], bin));
-//        kc |= ((byte) ch[i]) << (8 * i);
-//    }
-//
-//    minimote_x11_key_click(&x11, kc);
-//
-//    return -1;
+    i("Initializing minimote server on port %d", args.port);
     minimote_server server;
-    minimote_server_init(&server, 50501, 50501);
+    minimote_controller_config controller_config = minimote_controller_config_default();
+    minimote_server_init(&server, args.port, args.port, controller_config);
 
     pthread_t thread_udp, thread_tcp;
 

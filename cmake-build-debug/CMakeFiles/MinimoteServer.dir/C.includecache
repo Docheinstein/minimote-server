@@ -17,14 +17,18 @@ commons/globals.h
 ../src/adt/hash/node/hash_node.h
 
 ../src/adt/list/list.h
-commons/globals.h
+stdbool.h
 -
+commons/globals.h
+../src/adt/list/commons/globals.h
 adt/list/node/list_node.h
 ../src/adt/list/adt/list/node/list_node.h
-stdbool.h
-../src/adt/list/stdbool.h
 
 ../src/adt/list/node/list_node.h
+
+../src/buffer/rolling_buffer.h
+commons/globals.h
+../src/buffer/commons/globals.h
 
 ../src/commons/globals.h
 sys/types.h
@@ -46,13 +50,27 @@ arpa/inet.h
 
 ../src/commons/utils/time_utils.h
 
-../src/minimote/controller/minimote_controller.h
-minimote/special_keys/type/minimote_special_key_type.h
+../src/logging/logging.h
+stdio.h
 -
-commons/globals.h
-../src/minimote/controller/commons/globals.h
+
+../src/minimote/client/minimote_client.h
+minimote/controller/minimote_controller.h
+-
+netinet/in.h
+-
+buffer/rolling_buffer.h
+-
+
+../src/minimote/controller/minimote_controller.h
 minimote/x11/minimote_x11.h
 ../src/minimote/controller/minimote/x11/minimote_x11.h
+minimote/keys/minimote_key_type.h
+../src/minimote/controller/minimote/keys/minimote_key_type.h
+commons/globals.h
+../src/minimote/controller/commons/globals.h
+
+../src/minimote/keys/minimote_key_type.h
 
 ../src/minimote/packet/minimote_packet.h
 commons/globals.h
@@ -62,13 +80,11 @@ type/minimote_packet_type.h
 
 ../src/minimote/packet/type/minimote_packet_type.h
 
-../src/minimote/special_keys/type/minimote_special_key_type.h
-
 ../src/minimote/x11/minimote_x11.h
 X11/Xlib.h
 -
-minimote/special_keys/type/minimote_special_key_type.h
--
+minimote/keys/minimote_key_type.h
+../src/minimote/x11/minimote/keys/minimote_key_type.h
 adt/hash/hash.h
 ../src/minimote/x11/adt/hash/hash.h
 commons/globals.h
@@ -89,13 +105,15 @@ sys/socket.h
 -
 netinet/in.h
 -
-arpa/inet.h
--
 pthread.h
 -
 commons/utils/net_utils.h
 -
 commons/utils/time_utils.h
+-
+logging/logging.h
+-
+minimote/client/minimote_client.h
 -
 commons/globals.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/commons/globals.h
@@ -111,6 +129,10 @@ minimote/packet/minimote_packet.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.h
 minimote/controller/minimote_controller.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote/controller/minimote_controller.h
+buffer/rolling_buffer.h
+/home/stefano/Develop/C/MinimoteServer/src/minimote/server/buffer/rolling_buffer.h
 commons/globals.h
 /home/stefano/Develop/C/MinimoteServer/src/minimote/server/commons/globals.h
+adt/hash/hash.h
+/home/stefano/Develop/C/MinimoteServer/src/minimote/server/adt/hash/hash.h
 

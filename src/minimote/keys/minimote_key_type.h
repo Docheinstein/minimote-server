@@ -1,7 +1,7 @@
-#ifndef MINIMOTE_SPECIAL_KEY_TYPE_H
-#define MINIMOTE_SPECIAL_KEY_TYPE_H
+#ifndef MINIMOTE_KEY_TYPE_H
+#define MINIMOTE_KEY_TYPE_H
 
-typedef enum minimote_special_key_type_t {
+typedef enum minimote_key_type_t {
     UP =            0x00,
     DOWN =          0x01,
     LEFT =          0x02,
@@ -74,6 +74,6 @@ typedef enum minimote_special_key_type_t {
     X =             0x45,
     Y =             0x46,
     Z =             0x47,
-} minimote_special_key_type;
+} minimote_key_type;
 
-#endif // MINIMOTE_SPECIAL_KEY_TYPE_H
+#endif // MINIMOTE_KEY_TYPE_H

@@ -11,4 +11,4 @@ file(GLOB_RECURSE sources
 
 include_directories(src)
 
-add_executable(MinimoteServer ${sources} src/commons/utils/net_utils.c src/commons/utils/net_utils.h src/commons/utils/time_utils.c src/commons/utils/time_utils.h)
+add_executable(MinimoteServer ${sources})

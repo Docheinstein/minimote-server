@@ -8,16 +8,16 @@ void list_init(list *list) {
     list->size = 0;
 }
 
+uint64 list_size(list *list) {
+    return list->size;
+}
+
 list_node *list_head(list *list) {
     return list->head;
 }
 
 list_node *list_tail(list *list) {
     return list->tail;
-}
-
-uint64 list_size(list *list) {
-    return list->size;
 }
 
 void list_prepend(list *list, void *data) {
@@ -48,8 +48,30 @@ void list_append(list *list, void *data) {
     ++list->size;
 }
 
+void list_remove(list *list, list_node *node) {
+    if (!node)
+        return;
+
+    if (node->prev) {
+        node->prev->next = node->next;
+    }
+    else {
+        list->head = node->next;
+    }
+    if (node->next) {
+        node->next->prev = node->prev;
+    }
+    else {
+        list->tail = node->prev;
+    }
+
+    node->next = node->prev = NULL;
+    list->size--;
+}
+
 void list_foreach(
-        list *list, void (*fun)(void *)) {
+        list *list,
+        void (*fun)(void *)) {
     list_node *it = list->head;
     while (it) {
         fun(it->data);
@@ -58,7 +80,9 @@ void list_foreach(
 }
 
 void list_foreach1(
-        list *list, void (*fun)(void *, void *), void *arg) {
+        list *list,
+        void (*fun)(void *, void *),
+        void *arg) {
     list_node *it = list->head;
     while (it) {
         fun(it->data, arg);
@@ -67,7 +91,8 @@ void list_foreach1(
 }
 
 void list_foreach2(
-        list *list, void (*fun)(void *, void *, void *),
+        list *list,
+        void (*fun)(void *, void *, void *),
         void *arg1, void *arg2) {
     list_node *it = list->head;
     while (it) {
@@ -151,25 +176,4 @@ list_node *list_until2(
         it = it->next;
     }
     return NULL;
-}
-
-void list_remove(list *list, list_node *node) {
-    if (!node)
-        return;
-
-    if (node->prev) {
-        node->prev->next = node->next;
-    }
-    else {
-        list->head = node->next;
-    }
-    if (node->next) {
-        node->next->prev = node->prev;
-    }
-    else {
-        list->tail = node->prev;
-    }
-
-    node->next = node->prev = NULL;
-    list->size--;
 }

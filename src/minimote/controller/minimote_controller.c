@@ -1,40 +1,51 @@
 #include "minimote_controller.h"
 #include <stdio.h>
-#include <pthread.h>
+#include <logging/logging.h>
+#include <commons/conf/conf.h>
 
-#define DEFAULT_MOUSE_SENSIBILITY 1.5
+static void minimote_controller_merge_config(
+        minimote_controller_config *dst,
+        const minimote_controller_config *src);
 
+minimote_controller_config minimote_controller_config_default() {
+    minimote_controller_config cfg;
+    cfg.mouse_sensisibilty = MINIMOTE_DEFAULT_MOUSE_SENSIBILITY;
+    return cfg;
+}
 
-void minimote_controller_init(minimote_controller *controller) {
+void minimote_controller_init(
+        minimote_controller *controller,
+        minimote_controller_config config) {
+    minimote_controller_merge_config(&controller->config, &config);
     controller->last_move_time = 0;
     controller->last_move_id = 0;
     controller->last_move_x = 0;
     controller->last_move_y = 0;
     minimote_x11_init(&controller->x11);
-    pthread_mutex_init(&controller->x11_mutex, NULL);
 }
 
 void minimote_controller_move(minimote_controller *controller,
         uint64 time, uint8 mid, uint16 x, uint16 y) {
 
     if (time < controller->last_move_time) {
-        printf("Discarding out of order MOVE packet\n");
+        w("Discarding out of order MOVE packet");
         return;
     }
 
-    printf("Handling movement (MID: %d, X: %d, Y: %d)\n", mid, x, y);
+    d("Handling movement (MID: %d, X: %d, Y: %d)\n", mid, x, y);
 
     if (controller->last_move_time > 0 &&
         controller->last_move_id == mid) {
+
         // Legal movement, belongs to the same pointer of the last event
-        int dx = (int) ((x - controller->last_move_x) * DEFAULT_MOUSE_SENSIBILITY);
-        int dy = (int) ((y - controller->last_move_y) * DEFAULT_MOUSE_SENSIBILITY);
+        int dx = (int) ((x - controller->last_move_x) * controller->config.mouse_sensisibilty);
+        int dy = (int) ((y - controller->last_move_y) * controller->config.mouse_sensisibilty);
 
         minimote_x11_move(&controller->x11, dx, dy);
     }
     else {
         // New pointer down, skip since we cannot compute delta yet
-        printf("New movement id: %d, doing nothing\n", mid);
+        d("New movement id: %d, doing nothing", mid);
     }
 
     controller->last_move_time = time;
@@ -87,30 +98,27 @@ void minimote_controller_scroll_down(minimote_controller *controller) {
     minimote_x11_scroll_down(&controller->x11);
 }
 
-void minimote_controller_key_click(minimote_controller *controller, uint32 unicode_key) {
-    printf("Handling key %#04x\n", unicode_key);
-    pthread_mutex_lock(&controller->x11_mutex);
-    minimote_x11_key_click(&controller->x11, unicode_key);
-    pthread_mutex_unlock(&controller->x11_mutex);
+void minimote_controller_write(minimote_controller *controller, uint32 unicode_key) {
+    minimote_x11_write(&controller->x11, unicode_key);
 }
 
-void minimote_controller_special_key_down(minimote_controller *controller, minimote_special_key_type special_key) {
-    printf("Handling special key down %d\n", special_key);
-    pthread_mutex_lock(&controller->x11_mutex);
-    minimote_x11_special_key_down(&controller->x11, special_key);
-    pthread_mutex_unlock(&controller->x11_mutex);
+void minimote_controller_key_down(minimote_controller *controller, minimote_key_type minimote_key) {
+    minimote_x11_key_down(&controller->x11, minimote_key);
 }
 
-void minimote_controller_special_key_up(minimote_controller *controller, minimote_special_key_type special_key) {
-    printf("Handling special key up %d\n", special_key);
-    pthread_mutex_lock(&controller->x11_mutex);
-    minimote_x11_special_key_up(&controller->x11, special_key);
-    pthread_mutex_unlock(&controller->x11_mutex);
+void minimote_controller_key_up(minimote_controller *controller, minimote_key_type minimote_key) {
+    minimote_x11_key_up(&controller->x11, minimote_key);
 }
 
-void minimote_controller_special_key_click(minimote_controller *controller, minimote_special_key_type special_key) {
-    printf("Handling special key click %d\n", special_key);
-    pthread_mutex_lock(&controller->x11_mutex);
-    minimote_x11_special_key_click(&controller->x11, special_key);
-    pthread_mutex_unlock(&controller->x11_mutex);
+void minimote_controller_key_click(minimote_controller *controller, minimote_key_type minimote_key) {
+    minimote_x11_key_click(&controller->x11, minimote_key);
+}
+
+// ----
+
+void minimote_controller_merge_config(  minimote_controller_config *dst,
+                                        const minimote_controller_config *src) {
+    if (!dst || !src)
+        return;
+    dst->mouse_sensisibilty = src->mouse_sensisibilty;
 }

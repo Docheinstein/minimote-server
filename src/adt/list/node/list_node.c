@@ -15,11 +15,15 @@ void list_node_free(list_node *node) {
 }
 
 list_node *list_node_next(list_node *node) {
-    return node->next;
+    if (node)
+        return node->next;
+    return node;
 }
 
 list_node *list_node_prev(list_node *node) {
-    return node->prev;
+    if (node)
+        return node->prev;
+    return node;
 }
 
 void list_node_forward(list_node **node) {

@@ -5,9 +5,9 @@
 #include <X11/Xutil.h>
 #include <X11/extensions/XTest.h>
 #include "adt/list/list.h"
-#include <minimote/special_keys/keymap/minimote_special_keymap.h>
 #include <string.h>
 #include <commons/utils/time_utils.h>
+#include <minimote/keys/minimote_key_type_x11_map.h>
 
 #define KEYSYM_POS_MODIFIER_NONE        0
 #define KEYSYM_POS_MODIFIER_SHIFTED     1
@@ -119,9 +119,9 @@ static void print_keycode(void *arg) {
     printf("K: %d\n", keycode);
 }
 
-void minimote_x11_key_click(minimote_x11 *mx, uint32 unicode_key) {
+void minimote_x11_write(minimote_x11 *mx, uint32 unicode_key) {
 
-    // Retrieve the keystroke (keycode + modifier) from the special_keys
+    // Retrieve the keystroke (keycode + modifier) from the keys
     KeySym *k = malloc(sizeof(KeySym));
     *k = unicode_key;
     keystroke *ks = hash_get(&mx->keymap, k);
@@ -258,8 +258,8 @@ void minimote_x11_key_click(minimote_x11 *mx, uint32 unicode_key) {
 #endif
 }
 
-void minimote_x11_special_key_down(minimote_x11 *mx, minimote_special_key_type special_key) {
-    KeySym k = SPECIAL_KEY_MAP[special_key];
+void minimote_x11_key_down(minimote_x11 *mx, minimote_key_type special_key) {
+    KeySym k = KEY_TYPE_X11_MAP[special_key];
     keystroke *ks = hash_get(&mx->keymap, &k);
 
     if (!ks) {
@@ -272,8 +272,8 @@ void minimote_x11_special_key_down(minimote_x11 *mx, minimote_special_key_type s
     keyboard_key_down(mx, ks->keycode);
 }
 
-void minimote_x11_special_key_up(minimote_x11 *mx, minimote_special_key_type special_key) {
-    KeySym k = SPECIAL_KEY_MAP[special_key];
+void minimote_x11_key_up(minimote_x11 *mx, minimote_key_type special_key) {
+    KeySym k = KEY_TYPE_X11_MAP[special_key];
     keystroke *ks = hash_get(&mx->keymap, &k);
 
     if (!ks) {
@@ -287,9 +287,9 @@ void minimote_x11_special_key_up(minimote_x11 *mx, minimote_special_key_type spe
     keyboard_key_up(mx, ks->keycode);
 }
 
-void minimote_x11_special_key_click(minimote_x11 *mx, minimote_special_key_type special_key) {
-    minimote_x11_special_key_down(mx, special_key);
-    minimote_x11_special_key_up(mx, special_key);
+void minimote_x11_key_click(minimote_x11 *mx, minimote_key_type special_key) {
+    minimote_x11_key_down(mx, special_key);
+    minimote_x11_key_up(mx, special_key);
 }
 
 // _________________________________________________________

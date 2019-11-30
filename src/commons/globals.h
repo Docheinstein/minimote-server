@@ -1,5 +1,5 @@
-#ifndef MINIMOTE_DEFS_H
-#define MINIMOTE_DEFS_H
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
 #include "sys/types.h"
 #include "stdbool.h"
@@ -11,4 +11,4 @@ typedef u_int8_t uint8;
 
 typedef u_char byte;
 
-#endif // MINIMOTE_DEFS_H
+#endif // GLOBALS_H

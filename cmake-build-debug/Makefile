@@ -231,6 +231,60 @@ src/adt/list/node/list_node.c.s:
 	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.s
 .PHONY : src/adt/list/node/list_node.c.s
 
+src/arguments/arguments.o: src/arguments/arguments.c.o
+
+.PHONY : src/arguments/arguments.o
+
+# target to build an object file
+src/arguments/arguments.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/arguments/arguments.c.o
+.PHONY : src/arguments/arguments.c.o
+
+src/arguments/arguments.i: src/arguments/arguments.c.i
+
+.PHONY : src/arguments/arguments.i
+
+# target to preprocess a source file
+src/arguments/arguments.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/arguments/arguments.c.i
+.PHONY : src/arguments/arguments.c.i
+
+src/arguments/arguments.s: src/arguments/arguments.c.s
+
+.PHONY : src/arguments/arguments.s
+
+# target to generate assembly for a file
+src/arguments/arguments.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/arguments/arguments.c.s
+.PHONY : src/arguments/arguments.c.s
+
+src/buffer/rolling_buffer.o: src/buffer/rolling_buffer.c.o
+
+.PHONY : src/buffer/rolling_buffer.o
+
+# target to build an object file
+src/buffer/rolling_buffer.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/buffer/rolling_buffer.c.o
+.PHONY : src/buffer/rolling_buffer.c.o
+
+src/buffer/rolling_buffer.i: src/buffer/rolling_buffer.c.i
+
+.PHONY : src/buffer/rolling_buffer.i
+
+# target to preprocess a source file
+src/buffer/rolling_buffer.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/buffer/rolling_buffer.c.i
+.PHONY : src/buffer/rolling_buffer.c.i
+
+src/buffer/rolling_buffer.s: src/buffer/rolling_buffer.c.s
+
+.PHONY : src/buffer/rolling_buffer.s
+
+# target to generate assembly for a file
+src/buffer/rolling_buffer.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/buffer/rolling_buffer.c.s
+.PHONY : src/buffer/rolling_buffer.c.s
+
 src/commons/utils/byte_utils.o: src/commons/utils/byte_utils.c.o
 
 .PHONY : src/commons/utils/byte_utils.o
@@ -339,6 +393,33 @@ src/main.c.s:
 	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/minimote/client/minimote_client.o: src/minimote/client/minimote_client.c.o
+
+.PHONY : src/minimote/client/minimote_client.o
+
+# target to build an object file
+src/minimote/client/minimote_client.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o
+.PHONY : src/minimote/client/minimote_client.c.o
+
+src/minimote/client/minimote_client.i: src/minimote/client/minimote_client.c.i
+
+.PHONY : src/minimote/client/minimote_client.i
+
+# target to preprocess a source file
+src/minimote/client/minimote_client.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.i
+.PHONY : src/minimote/client/minimote_client.c.i
+
+src/minimote/client/minimote_client.s: src/minimote/client/minimote_client.c.s
+
+.PHONY : src/minimote/client/minimote_client.s
+
+# target to generate assembly for a file
+src/minimote/client/minimote_client.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.s
+.PHONY : src/minimote/client/minimote_client.c.s
+
 src/minimote/controller/minimote_controller.o: src/minimote/controller/minimote_controller.c.o
 
 .PHONY : src/minimote/controller/minimote_controller.o
@@ -365,6 +446,33 @@ src/minimote/controller/minimote_controller.s: src/minimote/controller/minimote_
 src/minimote/controller/minimote_controller.c.s:
 	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.s
 .PHONY : src/minimote/controller/minimote_controller.c.s
+
+src/minimote/keys/minimote_key_type_x11_map.o: src/minimote/keys/minimote_key_type_x11_map.c.o
+
+.PHONY : src/minimote/keys/minimote_key_type_x11_map.o
+
+# target to build an object file
+src/minimote/keys/minimote_key_type_x11_map.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/keys/minimote_key_type_x11_map.c.o
+.PHONY : src/minimote/keys/minimote_key_type_x11_map.c.o
+
+src/minimote/keys/minimote_key_type_x11_map.i: src/minimote/keys/minimote_key_type_x11_map.c.i
+
+.PHONY : src/minimote/keys/minimote_key_type_x11_map.i
+
+# target to preprocess a source file
+src/minimote/keys/minimote_key_type_x11_map.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/keys/minimote_key_type_x11_map.c.i
+.PHONY : src/minimote/keys/minimote_key_type_x11_map.c.i
+
+src/minimote/keys/minimote_key_type_x11_map.s: src/minimote/keys/minimote_key_type_x11_map.c.s
+
+.PHONY : src/minimote/keys/minimote_key_type_x11_map.s
+
+# target to generate assembly for a file
+src/minimote/keys/minimote_key_type_x11_map.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/keys/minimote_key_type_x11_map.c.s
+.PHONY : src/minimote/keys/minimote_key_type_x11_map.c.s
 
 src/minimote/packet/minimote_packet.o: src/minimote/packet/minimote_packet.c.o
 
@@ -447,33 +555,6 @@ src/minimote/server/minimote_server.c.s:
 	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.s
 .PHONY : src/minimote/server/minimote_server.c.s
 
-src/minimote/special_keys/keymap/minimote_special_keymap.o: src/minimote/special_keys/keymap/minimote_special_keymap.c.o
-
-.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.o
-
-# target to build an object file
-src/minimote/special_keys/keymap/minimote_special_keymap.c.o:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.o
-.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.c.o
-
-src/minimote/special_keys/keymap/minimote_special_keymap.i: src/minimote/special_keys/keymap/minimote_special_keymap.c.i
-
-.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.i
-
-# target to preprocess a source file
-src/minimote/special_keys/keymap/minimote_special_keymap.c.i:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.i
-.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.c.i
-
-src/minimote/special_keys/keymap/minimote_special_keymap.s: src/minimote/special_keys/keymap/minimote_special_keymap.c.s
-
-.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.s
-
-# target to generate assembly for a file
-src/minimote/special_keys/keymap/minimote_special_keymap.c.s:
-	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/special_keys/keymap/minimote_special_keymap.c.s
-.PHONY : src/minimote/special_keys/keymap/minimote_special_keymap.c.s
-
 src/minimote/x11/minimote_x11.o: src/minimote/x11/minimote_x11.c.o
 
 .PHONY : src/minimote/x11/minimote_x11.o
@@ -522,6 +603,12 @@ help:
 	@echo "... src/adt/list/node/list_node.o"
 	@echo "... src/adt/list/node/list_node.i"
 	@echo "... src/adt/list/node/list_node.s"
+	@echo "... src/arguments/arguments.o"
+	@echo "... src/arguments/arguments.i"
+	@echo "... src/arguments/arguments.s"
+	@echo "... src/buffer/rolling_buffer.o"
+	@echo "... src/buffer/rolling_buffer.i"
+	@echo "... src/buffer/rolling_buffer.s"
 	@echo "... src/commons/utils/byte_utils.o"
 	@echo "... src/commons/utils/byte_utils.i"
 	@echo "... src/commons/utils/byte_utils.s"
@@ -534,9 +621,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/minimote/client/minimote_client.o"
+	@echo "... src/minimote/client/minimote_client.i"
+	@echo "... src/minimote/client/minimote_client.s"
 	@echo "... src/minimote/controller/minimote_controller.o"
 	@echo "... src/minimote/controller/minimote_controller.i"
 	@echo "... src/minimote/controller/minimote_controller.s"
+	@echo "... src/minimote/keys/minimote_key_type_x11_map.o"
+	@echo "... src/minimote/keys/minimote_key_type_x11_map.i"
+	@echo "... src/minimote/keys/minimote_key_type_x11_map.s"
 	@echo "... src/minimote/packet/minimote_packet.o"
 	@echo "... src/minimote/packet/minimote_packet.i"
 	@echo "... src/minimote/packet/minimote_packet.s"
@@ -546,9 +639,6 @@ help:
 	@echo "... src/minimote/server/minimote_server.o"
 	@echo "... src/minimote/server/minimote_server.i"
 	@echo "... src/minimote/server/minimote_server.s"
-	@echo "... src/minimote/special_keys/keymap/minimote_special_keymap.o"
-	@echo "... src/minimote/special_keys/keymap/minimote_special_keymap.i"
-	@echo "... src/minimote/special_keys/keymap/minimote_special_keymap.s"
 	@echo "... src/minimote/x11/minimote_x11.o"
 	@echo "... src/minimote/x11/minimote_x11.i"
 	@echo "... src/minimote/x11/minimote_x11.s"

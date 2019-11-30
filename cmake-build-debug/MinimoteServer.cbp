@@ -102,6 +102,21 @@
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/adt/list/node/list_node.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/arguments/arguments.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/arguments/arguments.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/buffer/rolling_buffer.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/buffer/rolling_buffer.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/conf/conf.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/globals.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
@@ -123,13 +138,31 @@
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/commons/utils/time_utils.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/logging/logging.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/main.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/client/minimote_client.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/client/minimote_client.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/controller/minimote_controller.c">
 			<Option target="MinimoteServer"/>
 		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/controller/minimote_controller.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/keys/minimote_key_type.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/keys/minimote_key_type_x11_map.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/keys/minimote_key_type_x11_map.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/packet/minimote_packet.c">
@@ -148,15 +181,6 @@
 			<Option target="MinimoteServer"/>
 		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.h">
-			<Option target="MinimoteServer"/>
-		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.c">
-			<Option target="MinimoteServer"/>
-		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/keymap/minimote_special_keymap.h">
-			<Option target="MinimoteServer"/>
-		</Unit>
-		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/special_keys/type/minimote_special_key_type.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c">

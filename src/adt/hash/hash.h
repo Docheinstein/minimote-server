@@ -12,7 +12,9 @@ typedef struct hash_t {
     uint32 (*hash_func)(void *);
 } hash;
 
-void hash_init(hash *hash, int capacity,
+void hash_init(
+        hash *hash,
+        int capacity,
         uint32 (*hash_func) (void *data),
         bool (*key_eq_func) (void *k1, void *k2));
 

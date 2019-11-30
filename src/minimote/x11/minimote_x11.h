@@ -2,7 +2,7 @@
 #define MINIMOTE_X11_H
 
 #include <X11/Xlib.h>
-#include <minimote/special_keys/type/minimote_special_key_type.h>
+#include "minimote/keys/minimote_key_type.h"
 #include "adt/hash/hash.h"
 #include "commons/globals.h"
 
@@ -33,9 +33,9 @@ void minimote_x11_move(minimote_x11 *mx, int dx, int dy);
 void minimote_x11_scroll_up(minimote_x11 *mx);
 void minimote_x11_scroll_down(minimote_x11 *mx);
 
-void minimote_x11_key_click(minimote_x11 *mx, uint32 unicode_key);
-void minimote_x11_special_key_down(minimote_x11 *mx, minimote_special_key_type special_key);
-void minimote_x11_special_key_up(minimote_x11 *mx, minimote_special_key_type special_key);
-void minimote_x11_special_key_click(minimote_x11 *mx, minimote_special_key_type special_key);
+void minimote_x11_write(minimote_x11 *mx, uint32 unicode_key);
+void minimote_x11_key_down(minimote_x11 *mx, minimote_key_type special_key);
+void minimote_x11_key_up(minimote_x11 *mx, minimote_key_type special_key);
+void minimote_x11_key_click(minimote_x11 *mx, minimote_key_type special_key);
 
 #endif // MINIMOTE_X11_H
