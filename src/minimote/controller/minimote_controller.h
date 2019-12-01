@@ -7,6 +7,8 @@
 
 typedef struct minimote_controller_config_t {
     double mouse_sensisibilty;
+    int scroll_boost;
+    bool scroll_reverse;
 } minimote_controller_config;
 
 typedef struct minimote_controller_t {
@@ -16,8 +18,6 @@ typedef struct minimote_controller_t {
     uint8 last_move_id;
     uint16 last_move_x;
     uint16 last_move_y;
-
-    minimote_x11 x11;
 } minimote_controller;
 
 minimote_controller_config minimote_controller_config_default();
@@ -45,8 +45,14 @@ void minimote_controller_move(minimote_controller *controller,
         uint64 time, uint8 mid, uint16 x, uint16 y);
 
 void minimote_controller_write(minimote_controller *controller, uint32 unicode_key);
+
 void minimote_controller_key_down(minimote_controller *controller, minimote_key_type minimote_key);
 void minimote_controller_key_up(minimote_controller *controller, minimote_key_type minimote_key);
 void minimote_controller_key_click(minimote_controller *controller, minimote_key_type minimote_key);
+
+void minimote_controller_hotkey(minimote_controller *controller,
+        minimote_key_type * minimote_keys, int minimote_key_count);
+
+
 
 #endif // MINIMOTE_CONTROLLER_H

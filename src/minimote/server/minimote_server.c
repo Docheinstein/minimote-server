@@ -5,12 +5,10 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <pthread.h>
-#include <commons/utils/net_utils.h>
-#include <commons/utils/time_utils.h>
-#include <logging/logging.h>
-#include <minimote/client/minimote_client.h>
-
+#include "commons/utils/net_utils.h"
+#include "commons/utils/time_utils.h"
+#include "logging/logging.h"
+#include "minimote/client/minimote_client.h"
 #include "commons/globals.h"
 #include "commons/utils/byte_utils.h"
 #include "minimote_server.h"
@@ -18,18 +16,25 @@
 #include "minimote/packet/minimote_packet.h"
 
 #define MAX_PACKET_LENGTH 64
-#define HOTKEY_INTER_KEYS_TIMEOUT_MS 5
-#define SOCKET_TIMEOUT_SEC 600
-//#define SOCKET_TIMEOUT_SEC 3
+#define MAX_HOTKEY_LENGTH 16
+#define CLIENT_SOCKET_TIMEOUT 600
 
-// Hash functions for clients
+// Hash functions
 
 static uint32 sockaddr_in_hash_func(void *arg);
 static bool sockaddr_in_key_eq_func(void *arg1, void *arg2);
-static void sockaddr_free_func(void *arg);
-static void client_free_func(void *arg);
+static void sockaddr_in_free_func(void *arg);
+static void minimote_client_free_func(void *arg);
+
+static void clients_iterator_check_client_socket(hash_node *hnode, void *arg);
+
+static void clients_iterator_craft_select_fds(hash_node *hnode, void *arg);
 
 // Internal helper functions
+
+static void minimote_server_handle_tcp_ready(minimote_server *server);
+static void minimote_server_handle_udp_ready(minimote_server *server);
+static bool minimote_server_handle_client_ready(minimote_server *server, minimote_client *client);
 
 static void minimote_server_handle_packet_from_client(
         minimote_server *server,
@@ -39,7 +44,7 @@ static void minimote_server_handle_packet_from_client(
 static bool minimote_server_answer_discover_request(
         minimote_server *server, minimote_client *client);
 
-static minimote_client * minimote_server_get_client(
+static minimote_client * minimote_server_get_or_put_client(
         minimote_server *server,
         struct sockaddr_in *client_sockaddr);
 
@@ -47,31 +52,34 @@ static bool minimote_server_try_handle_client_buffer(
         minimote_server *server,
         minimote_client *client);
 
-typedef struct minimote_server_handle_tcp_client_arg_t {
-    minimote_server *server;
-    minimote_client *client;
-} minimote_server_handle_tcp_client_arg;
+static void minimote_server_setup_select_fds(minimote_server *server);
 
-static void * minimote_server_handle_tcp_client(void *arg);
 
 void minimote_server_init(minimote_server *server,
                           int tcp_port,
                           int udp_port,
                           minimote_controller_config config) {
     server->tcp_socket = -1;
-    server->tcp_running = 0;
     server->tcp_port = tcp_port;
 
     server->udp_socket = -1;
-    server->udp_running = 0;
     server->udp_port = udp_port;
 
+    FD_ZERO(&server->read_sockets);
+    FD_ZERO(&server->write_sockets);
+    FD_ZERO(&server->error_sockets);
+    server->max_socket_fd = -1;
+
+    server->running = false;
     server->controller_config = config;
+
+    // Clients
     hash_init_full(
             &server->clients, 16,
             sockaddr_in_hash_func, sockaddr_in_key_eq_func,
-            sockaddr_free_func, client_free_func);
+            sockaddr_in_free_func, minimote_client_free_func);
 
+    // Hostname
     int ok = gethostname(server->hostname, MAX_HOSTNAME_LENGTH);
     if (ok < 0) {
         w("Error resolving hostname");
@@ -80,11 +88,22 @@ void minimote_server_init(minimote_server *server,
     }
 }
 
-bool minimote_server_start_tcp(minimote_server *server) {
-    i("Starting TCP server on port %d", server->tcp_port);
-    server->tcp_running = true;
+void minimote_server_stop(minimote_server *server) {
+    i("Stopping server");
+    server->running = false;
+}
+
+bool minimote_server_start(minimote_server *server) {
+    i("Starting server on port %d", server->tcp_port);
+    server->running = true;
 
     struct sockaddr_in server_address;
+
+    server_address.sin_family = AF_INET;
+    server_address.sin_addr.s_addr = INADDR_ANY;
+    server_address.sin_port = htons(server->udp_port);
+
+    // TCP socket
 
     server->tcp_socket = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -93,153 +112,203 @@ bool minimote_server_start_tcp(minimote_server *server) {
         return false;
     }
 
-    int opt = 1;
-
-    // SO_REUSEADDR, SO_REUSEPORT
+    // -- SO_REUSEADDR, SO_REUSEPORT
+    int reuse_addr_port_opt = 1;
     if (setsockopt(server->tcp_socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
-               &opt, sizeof(opt)) < 0) {
+               &reuse_addr_port_opt, sizeof(reuse_addr_port_opt)) < 0) {
         e("setsockopt error: %s", strerror(errno));
     }
 
-    server_address.sin_family = AF_INET;
-    server_address.sin_addr.s_addr = INADDR_ANY;
-    server_address.sin_port = htons(server->udp_port);
-
-    if (bind(server->tcp_socket, (struct sockaddr *)& server_address, sizeof(server_address)) < 0) {
+    // -- bind()
+    if (bind(server->tcp_socket,
+            (struct sockaddr *)& server_address,
+            sizeof(server_address)) < 0) {
         e("Socket bind failed: %s", strerror(errno));
         return false;
     }
 
-    if (listen(server->tcp_socket, 1) != 0) {
+    // -- listen()
+    if (listen(server->tcp_socket, 5) != 0) {
         e("Socket listening failed: %s", strerror(errno));
         return false;
     }
 
-    while (server->tcp_running) {
-        // Handle connections
-        struct sockaddr_in client_address;
-        socklen_t client_address_len = sizeof(client_address);
-
-        i("Waiting for TCP connections...");
-
-        int connectionfd = accept(
-                server->tcp_socket,
-                (struct sockaddr *) &client_address,
-                        &client_address_len);
-
-        char client_ip[INET_ADDRSTRLEN];
-
-        i("Received TCP connection from %s:%d (socket fd = %d)",
-               sockaddr_to_ipv4(client_address, client_ip),
-               client_address.sin_port,
-               connectionfd);
-
-        pthread_t thread_client_tcp;
-
-        minimote_server_handle_tcp_client_arg *arg = malloc(sizeof(minimote_server_handle_tcp_client_arg));
-        arg->server = server;
-        arg->client = minimote_server_get_client(server, &client_address);
-        arg->client->tcp_socket_fd = connectionfd;
-
-        if (pthread_create(&thread_client_tcp, NULL, minimote_server_handle_tcp_client, arg) != 0) {
-            e("Thread creation failed, not handling connection");
-            continue;
-        }
-    }
-
-    return true;
-}
-
-bool minimote_server_start_udp(minimote_server *server) {
-    i("Starting UDP server on port %d", server->udp_port);
-    server->udp_running = 1;
-
-    struct sockaddr_in server_address;
+    // UDP
 
     server->udp_socket = socket(AF_INET, SOCK_DGRAM, 0);
+
 
     if (server->udp_socket < 0) {
         e("Socket creation failed: %s", strerror(errno));
         return false;
     }
 
-    int opt = 1;
+    // -- SO_REUSEADDR, SO_REUSEPORT
+    reuse_addr_port_opt = 1;
     setsockopt(server->udp_socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
-               &opt, sizeof(opt));
+               &reuse_addr_port_opt, sizeof(reuse_addr_port_opt));
 
-    server_address.sin_family = AF_INET;
-    server_address.sin_addr.s_addr = INADDR_ANY;
-    server_address.sin_port = htons(server->udp_port);
-
+    // -- bind()
     if (bind(server->udp_socket, (struct sockaddr *)& server_address, sizeof(server_address)) < 0) {
         e("Socket bind failed: %s", strerror(errno));
         return false;
     }
 
-    byte buffer[MAX_PACKET_LENGTH];
+    // select() setup: listen on TCP/UDP sockets
 
-    while (server->udp_running) {
-        bzero(buffer, MAX_PACKET_LENGTH);
+    while (server->running) {
+        d("Building select() fds...");
 
-        d("Waiting for UDP messages...");
+        minimote_server_setup_select_fds(server);
 
-        struct sockaddr_in client_address;
-        socklen_t sendsize = sizeof(client_address);
+        i("Waiting for something...");
 
-        int received_bufflen = recvfrom(
-                server->udp_socket, buffer, MAX_PACKET_LENGTH, 0,
-                (struct sockaddr*) &client_address, &sendsize);
+        d("--> TCP listening: %d", FD_ISSET(server->tcp_socket, &server->read_sockets));
+        d("--> UDP listening: %d", FD_ISSET(server->udp_socket, &server->read_sockets));
+        d("--> MAX socket_fd: %d", server->max_socket_fd);
+        d("--> TCP socket_fd: %d", server->tcp_socket);
+        d("--> UDP socket_fd: %d", server->udp_socket);
 
-        if (received_bufflen <= 0) {
-            w("Error in recvfrom\n");
+        int ready_fds_count =
+                select(server->max_socket_fd + 1,
+                        &server->read_sockets,
+                        &server->write_sockets,
+                        &server->error_sockets,
+                        NULL);
+
+        if (ready_fds_count < 0) {
+            e("select() bad return (%d): %s", ready_fds_count, strerror(errno));
             continue;
         }
 
-        char client_ip[INET_ADDRSTRLEN];
+        d("select() returned %d", ready_fds_count);
 
-        d("Received UDP message (%d bytes) from %s:%d",
-               received_bufflen,
-               sockaddr_to_ipv4(client_address, client_ip),
-               client_address.sin_port);
+        // Check which socket is ready to read
+        // Important bug fix: TCP clients must be handled before TCP master,
+        // Otherwise the new socket_fd is added to the read_sockets even if it
+        // is not ready, and will be confused with the really ready sockets
 
-        minimote_packet packet;
-        int res = minimote_packet_parse(&packet, buffer, received_bufflen);
+        // TCP clients
+        hash_foreach(&server->clients, clients_iterator_check_client_socket, server);
 
-        if (res < 0) {
-            w("Parsing of UDP message goes wrong");
-            continue;
+        // TCP master
+        if (FD_ISSET(server->tcp_socket, &server->read_sockets)) {
+            minimote_server_handle_tcp_ready(server);
         }
 
-        minimote_client *client = minimote_server_get_client(server, &client_address);
-        minimote_server_handle_packet_from_client(server, &packet, client);
+        // UDP master
+        if (FD_ISSET(server->udp_socket,  &server->read_sockets)) {
+            minimote_server_handle_udp_ready(server);
+        }
     }
 
     return true;
 }
 
-void minimote_server_stop_tcp(minimote_server *server) {
-    i("Stopping TCP server");
-    server->tcp_running = false;
-}
-
-void minimote_server_stop_udp(minimote_server *server) {
-    i("Stopping UDP server");
-    server->udp_running = false;
-}
-
 // -----
 
-bool sockaddr_in_key_eq_func(void *arg1, void *arg2) {
-    struct sockaddr_in *sockaddr1 = (struct sockaddr_in *) arg1;
-    struct sockaddr_in *sockaddr2 = (struct sockaddr_in *) arg2;
-    return
-            sockaddr1->sin_addr.s_addr == sockaddr2->sin_addr.s_addr &&
-            sockaddr1->sin_port == sockaddr2->sin_port;
+void minimote_server_handle_tcp_ready(minimote_server *server) {
+    d("TCP socket is ready for read data");
+
+    // Handle new connection
+    struct sockaddr_in client_address;
+    socklen_t client_address_len = sizeof(client_address);
+
+    int connectionfd = accept(
+            server->tcp_socket,
+            (struct sockaddr *) &client_address,
+            &client_address_len);
+//    fnctl()
+
+    char client_ip[INET_ADDRSTRLEN];
+
+    i("Received TCP connection from %s:%d (socket fd = %d)",
+           sockaddr_to_ipv4(client_address, client_ip),
+           client_address.sin_port,
+           connectionfd);
+
+    // SO_RCVTIMEO
+    struct timeval socket_timeout;
+    socket_timeout.tv_sec = CLIENT_SOCKET_TIMEOUT;
+    socket_timeout.tv_usec = 0;
+    if (setsockopt(connectionfd, SOL_SOCKET, SO_RCVTIMEO,
+                   &socket_timeout, sizeof(socket_timeout)) < 0) {
+        w("setsockopt error: %s", strerror(errno));
+    }
+
+    // Add the client to the handled clients
+    minimote_client *c = minimote_server_get_or_put_client(server, &client_address);
+    c->tcp_socket_fd = connectionfd;
 }
 
-uint32 sockaddr_in_hash_func(void *arg) {
-    struct sockaddr_in *sockaddr = (struct sockaddr_in *) arg;
-    return sockaddr->sin_addr.s_addr | sockaddr->sin_port | (sockaddr->sin_port << 16);
+void minimote_server_handle_udp_ready(minimote_server *server) {
+    d("UDP socket is ready for read data");
+
+    byte buffer[MAX_PACKET_LENGTH];
+    struct sockaddr_in client_address;
+    socklen_t sendsize = sizeof(client_address);
+
+    int received_bufflen = recvfrom(
+            server->udp_socket, buffer, MAX_PACKET_LENGTH, 0,
+            (struct sockaddr*) &client_address, &sendsize);
+
+    if (received_bufflen < 0) {
+        w("Error on socket %d: %s", server->udp_socket, strerror(errno));
+        return;
+    }
+
+    if (received_bufflen == 0) {
+        d("EOF on socket %d: %s", server->udp_socket, strerror(errno));
+        return;
+    }
+
+    char client_ip[INET_ADDRSTRLEN];
+
+    d("Received UDP message (%d bytes) from %s:%d",
+           received_bufflen,
+           sockaddr_to_ipv4(client_address, client_ip),
+           client_address.sin_port);
+
+    minimote_packet packet;
+    int res = minimote_packet_parse(&packet, buffer, received_bufflen);
+
+    if (res < 0) {
+        w("Parsing of UDP message goes wrong");
+        return;
+    }
+
+    minimote_client *client = minimote_server_get_or_put_client(server, &client_address);
+    minimote_server_handle_packet_from_client(server, &packet, client);
+}
+
+bool minimote_server_handle_client_ready(minimote_server *server, minimote_client *client) {
+    byte message_buffer[MAX_PACKET_LENGTH];
+
+    d("Blocking on recv() on connection %d", client->tcp_socket_fd);
+    int received_bufflen = recv(client->tcp_socket_fd, message_buffer, MAX_PACKET_LENGTH, 0);
+
+    if (received_bufflen < 0) {
+        w("Error on socket %d: %s", client->tcp_socket_fd, strerror(errno));
+        return false;
+    }
+
+    if (received_bufflen == 0) {
+        d("EOF, closing connection %d properly", client->tcp_socket_fd);
+        return false;
+    }
+
+    d("Received TCP message (%d bytes) from client [%d] on connection %d\n",
+      received_bufflen,
+      client->id,
+      client->tcp_socket_fd);
+
+    // Push into the buffer
+    rolling_buffer_push(&client->tcp_buffer, message_buffer, received_bufflen);
+
+    // Handle all the available packets in the buffer
+    while (minimote_server_try_handle_client_buffer(server, client));
+
+    return true;
 }
 
 void minimote_server_handle_packet_from_client(
@@ -319,20 +388,14 @@ void minimote_server_handle_packet_from_client(
         case HOTKEY: {
             int payload_length = minimote_packet_payload_length(packet);
 
-            // Iterate forward and for each byte press the corresponding key down
+            // Build a keys array
+            minimote_key_type keys[MAX_HOTKEY_LENGTH];
+
             for (int i = 0; i < payload_length; i++) {
-                uint8 key = bytes_to_uint8(&packet->payload[i]);
-                minimote_controller_key_down(&client->controller, (minimote_key_type) key);
-                msleep(HOTKEY_INTER_KEYS_TIMEOUT_MS);
+                keys[i] = bytes_to_uint8(&packet->payload[i]);
             }
 
-            // Iterate backward and for each byte press the corresponding key up
-            for (int i = payload_length - 1; i >= 0; i--) {
-                uint8 key = bytes_to_uint8(&packet->payload[i]);
-                minimote_controller_key_up(&client->controller, (minimote_key_type) key);
-                if (i > 0)
-                    msleep(HOTKEY_INTER_KEYS_TIMEOUT_MS);
-            }
+            minimote_controller_hotkey(&client->controller, keys, payload_length);
 
             break;
         }
@@ -371,62 +434,7 @@ bool minimote_server_answer_discover_request(minimote_server *server, minimote_c
             (const struct sockaddr *) &client->address,sizeof(client->address)) > 0;
 }
 
-void *minimote_server_handle_tcp_client(void *arg) {
-    minimote_server_handle_tcp_client_arg * handle_arg = (minimote_server_handle_tcp_client_arg *) arg;
-
-    d("Handling TCP client [%d] on connection fd = %d",
-            handle_arg->client->id, handle_arg->client->tcp_socket_fd);
-
-    // SO_RCVTIMEO
-    struct timeval socket_timeout;
-    socket_timeout.tv_sec = SOCKET_TIMEOUT_SEC;
-    if (setsockopt(handle_arg->client->tcp_socket_fd, SOL_SOCKET, SO_RCVTIMEO,
-                   &socket_timeout, sizeof(socket_timeout)) < 0) {
-        w("setsockopt error: %s", strerror(errno));
-    }
-
-    byte message_buffer[MAX_PACKET_LENGTH];
-
-    while (handle_arg->server->tcp_running) {
-        bzero(message_buffer, MAX_PACKET_LENGTH);
-
-        d("Waiting for TCP messages for client [%d] on connection %d...\n",
-                handle_arg->client->id, handle_arg->client->tcp_socket_fd);
-
-        int received_bufflen = recv(handle_arg->client->tcp_socket_fd, message_buffer, MAX_PACKET_LENGTH, 0);
-
-        if (received_bufflen == 0) {
-            i("Closing connection %d with client [%d] properly",
-                    handle_arg->client->tcp_socket_fd, handle_arg->client->id);
-            break;
-        } else if (received_bufflen <= 0) {
-            w("Error in recv(), closing connection %d with client [%d] for reason: %s",
-                    handle_arg->client->tcp_socket_fd, handle_arg->client->id, strerror(errno));
-            break;
-        }
-
-        d("Received TCP message (%d bytes) from client [%d] on connection %d\n",
-                received_bufflen,
-                handle_arg->client->id,
-                handle_arg->client->tcp_socket_fd);
-
-        // Push into the buffer
-        rolling_buffer_push(&handle_arg->client->tcp_buffer, message_buffer, received_bufflen);
-
-        // Handle all the available packets in the buffer
-        while (minimote_server_try_handle_client_buffer(handle_arg->server, handle_arg->client));
-    }
-
-    // Remove the client, close the socket and release resources
-    close(handle_arg->client->tcp_socket_fd);
-    hash_delete(&handle_arg->server->clients, (void *) &handle_arg->client->address);
-
-    free(arg);
-
-    return NULL;
-}
-
-minimote_client *minimote_server_get_client(minimote_server *server, struct sockaddr_in *client_sockaddr) {
+minimote_client *minimote_server_get_or_put_client(minimote_server *server, struct sockaddr_in *client_sockaddr) {
 
     // Retrieve the minimote_client associated with client of the request
     // Or create if it does not exist
@@ -497,12 +505,83 @@ bool minimote_server_try_handle_client_buffer(minimote_server *server, minimote_
     return true;
 }
 
-void sockaddr_free_func(void *arg /* (struct sockaddr_in *) */) {
+void minimote_server_setup_select_fds(minimote_server *server) {
+    FD_ZERO(&server->read_sockets);
+    FD_ZERO(&server->write_sockets);
+    FD_ZERO(&server->error_sockets);
+
+    FD_SET(server->tcp_socket, &server->read_sockets);
+    FD_SET(server->udp_socket, &server->read_sockets);
+
+    FD_SET(server->tcp_socket, &server->error_sockets);
+    FD_SET(server->udp_socket, &server->error_sockets);
+
+    server->max_socket_fd = MAX(server->tcp_socket, server->udp_socket);
+
+    hash_foreach(&server->clients, clients_iterator_craft_select_fds, server);
+}
+
+// Hash functions
+
+uint32 sockaddr_in_hash_func(void *arg) {
+    struct sockaddr_in *sockaddr = (struct sockaddr_in *) arg;
+    return sockaddr->sin_addr.s_addr | sockaddr->sin_port | (sockaddr->sin_port << 16);
+}
+
+bool sockaddr_in_key_eq_func(void *arg1, void *arg2) {
+    struct sockaddr_in *sockaddr1 = (struct sockaddr_in *) arg1;
+    struct sockaddr_in *sockaddr2 = (struct sockaddr_in *) arg2;
+    return
+            sockaddr1->sin_addr.s_addr == sockaddr2->sin_addr.s_addr &&
+            sockaddr1->sin_port == sockaddr2->sin_port;
+}
+
+void sockaddr_in_free_func(void *arg /* (struct sockaddr_in *) */) {
     t();
     free(arg);
 }
 
-void client_free_func(void *arg /* minimote_client * */) {
+void minimote_client_free_func(void *arg /* minimote_client * */) {
     t();
+    // Close TCP socket too
+    minimote_client *client = (minimote_client *) arg;
+    close(client->tcp_socket_fd);
     minimote_client_destroy(arg);
+}
+
+void clients_iterator_check_client_socket(hash_node *hnode, void *arg) {
+    t();
+
+    minimote_server *server = (minimote_server *) arg;
+    minimote_client *client = hnode->value;
+
+    if (FD_ISSET(client->tcp_socket_fd, &server->read_sockets)) {
+        d("Client [%d] is ready to read on connection = %d",
+          client->id, client->tcp_socket_fd);
+        if (!minimote_server_handle_client_ready(server, client)) {
+            // Remove the client, close the socket and release resources
+            d("Closing connection %d associated with client %d", client->tcp_socket_fd, client->id);
+            hash_delete(&server->clients, (void *) &client->address);
+        }
+    }
+
+    if (FD_ISSET(client->tcp_socket_fd, &server->error_sockets)) {
+        d("Client [%d] exception on connection = %d",
+          client->id, client->tcp_socket_fd);
+//        if (!minimote_server_handle_client_ready(server, client)) {
+//            // Remove the client, close the socket and release resources
+//            d("Closing connection %d associated with client %d", client->tcp_socket_fd, client->id);
+//            hash_delete(&server->clients, (void *) &client->address);
+//        }
+    }
+}
+
+void clients_iterator_craft_select_fds(hash_node *hnode, void *arg) {
+    minimote_server *server = (minimote_server *) arg;
+    minimote_client *client = (minimote_client *) hnode->value;
+
+    FD_SET(client->tcp_socket_fd, &server->read_sockets);
+    FD_SET(client->tcp_socket_fd, &server->error_sockets);
+
+    server->max_socket_fd = MAX(server->max_socket_fd, client->tcp_socket_fd);
 }

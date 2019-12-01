@@ -7,7 +7,7 @@
 #define WARN    1
 #define INFO    1
 #define DEBUG   1
-#define TRACE   1
+#define TRACE   0
 
 #define ERROR_TAG   "[E] "
 #define WARN_TAG    "[W] "

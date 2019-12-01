@@ -8,11 +8,14 @@
 
 #define MODIFIERS_COUNT Mod5MapIndex + 1
 
+
 typedef struct minimote_x11_t {
     Display *display;
-    hash keymap;
+    hash keymap; // (KeySym *) -> (keystroke *)
     KeyCode modifiers[MODIFIERS_COUNT];
 } minimote_x11;
+
+extern minimote_x11 X11;
 
 void minimote_x11_init(minimote_x11 *mx);
 

@@ -10,6 +10,7 @@ CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o
  /home/stefano/Develop/C/MinimoteServer/src/adt/hash/hash.c
  /home/stefano/Develop/C/MinimoteServer/src/adt/hash/hash.h
 CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o
+ ../src/commons/globals.h
  /home/stefano/Develop/C/MinimoteServer/src/adt/hash/node/hash_node.c
  /home/stefano/Develop/C/MinimoteServer/src/adt/hash/node/hash_node.h
 CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o
@@ -23,6 +24,7 @@ CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o
  /home/stefano/Develop/C/MinimoteServer/src/adt/list/node/list_node.h
 CMakeFiles/MinimoteServer.dir/src/arguments/arguments.c.o
  ../src/commons/conf/conf.h
+ ../src/commons/globals.h
  /home/stefano/Develop/C/MinimoteServer/src/arguments/arguments.c
  /home/stefano/Develop/C/MinimoteServer/src/arguments/arguments.h
 CMakeFiles/MinimoteServer.dir/src/buffer/rolling_buffer.c.o
@@ -52,7 +54,6 @@ CMakeFiles/MinimoteServer.dir/src/main.c.o
  ../src/minimote/x11/minimote_x11.h
  /home/stefano/Develop/C/MinimoteServer/src/arguments/arguments.h
  /home/stefano/Develop/C/MinimoteServer/src/commons/conf/conf.h
- /home/stefano/Develop/C/MinimoteServer/src/commons/utils/byte_utils.h
  /home/stefano/Develop/C/MinimoteServer/src/logging/logging.h
  /home/stefano/Develop/C/MinimoteServer/src/main.c
  /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.h
@@ -76,6 +77,7 @@ CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o
  ../src/adt/list/node/list_node.h
  ../src/commons/conf/conf.h
  ../src/commons/globals.h
+ ../src/commons/utils/time_utils.h
  ../src/logging/logging.h
  ../src/minimote/keys/minimote_key_type.h
  ../src/minimote/x11/minimote_x11.h
@@ -121,7 +123,7 @@ CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o
  ../src/adt/list/list.h
  ../src/adt/list/node/list_node.h
  ../src/commons/globals.h
- ../src/commons/utils/time_utils.h
+ ../src/logging/logging.h
  ../src/minimote/keys/minimote_key_type.h
  ../src/minimote/keys/minimote_key_type_x11_map.h
  /home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c

@@ -11,4 +11,6 @@ typedef u_int8_t uint8;
 
 typedef u_char byte;
 
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
 #endif // GLOBALS_H

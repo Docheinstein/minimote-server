@@ -7,7 +7,7 @@
 
 typedef struct hash_t {
     uint32 capacity;
-    list ** buckets;
+    hash_node ** buckets;
     bool (*key_eq_func)(void *, void *);
     uint32 (*hash_func)(void *);
     void (*key_free_func)(void *);
@@ -30,15 +30,15 @@ void hash_init_full(
         void (*value_free_func) (void *key)
 );
 
-void hash_put(hash *hash, void *key, void *value);
-void hash_put_if_not_exists(hash *hash, void *key, void *value);
+bool hash_put(hash *hash, void *key, void *value);
+//void hash_put_if_not_exists(hash *hash, void *key, void *value);
 
 void * hash_get(hash *hash, void *key);
 
-void * hash_take(hash *hash, void *key);
-void hash_delete(hash *hash, void *key);
+//void * hash_take(hash *hash, void *key);
+bool hash_delete(hash *hash, void *key);
 
-void hash_foreach(hash *hash, void (*fun)(hash_node *node));
-void hash_foreach1(hash *hash, void (*fun)(hash_node *node, void *argument), void *arg);
+void hash_foreach(hash *hash, void (*fun)(hash_node *node, void *), void *arg);
+//void hash_foreach1(hash *hash, void (*fun)(hash_node *node, void *argument), void *arg);
 
 #endif // HASH_H
