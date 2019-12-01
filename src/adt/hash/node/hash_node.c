@@ -8,7 +8,3 @@ hash_node *hash_node_new(void *key, void *value) {
     node->value = value;
     return node;
 }
-
-void hash_node_free(hash_node *node) {
-    free(node);
-}

@@ -11,6 +11,8 @@ typedef struct rolling_buffer_t {
 } rolling_buffer;
 
 void rolling_buffer_init(rolling_buffer *rbuffer, uint32 capacity);
+void rolling_buffer_destroy(rolling_buffer *rbuffer);
+
 bool rolling_buffer_push(rolling_buffer *rbuffer, byte *data, uint32 data_length);
 
 byte * rolling_buffer_get(rolling_buffer *rbuffer);

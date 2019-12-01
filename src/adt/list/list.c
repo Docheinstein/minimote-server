@@ -2,10 +2,20 @@
 
 #include "stddef.h"
 #include <stdio.h>
+#include <malloc.h>
+#include <logging/logging.h>
+
+static void list_delete_cond(list *list, list_node *node, bool delete_data);
 
 void list_init(list *list) {
     list->head = list->tail = NULL;
     list->size = 0;
+    list->data_free_func = NULL;
+}
+
+void list_init_full(list *list, void (*data_free_func)(void *)) {
+    list_init(list);
+    list->data_free_func = data_free_func;
 }
 
 uint64 list_size(list *list) {
@@ -49,24 +59,11 @@ void list_append(list *list, void *data) {
 }
 
 void list_remove(list *list, list_node *node) {
-    if (!node)
-        return;
+    list_delete_cond(list, node, false);
+}
 
-    if (node->prev) {
-        node->prev->next = node->next;
-    }
-    else {
-        list->head = node->next;
-    }
-    if (node->next) {
-        node->next->prev = node->prev;
-    }
-    else {
-        list->tail = node->prev;
-    }
-
-    node->next = node->prev = NULL;
-    list->size--;
+void list_delete(list *list, list_node *node) {
+    list_delete_cond(list, node, true);
 }
 
 void list_foreach(
@@ -176,4 +173,34 @@ list_node *list_until2(
         it = it->next;
     }
     return NULL;
+}
+
+// --
+
+void list_delete_cond(list *list, list_node *node, bool delete_data) {
+    if (!node)
+        return;
+
+    if (node->prev) {
+        node->prev->next = node->next;
+    }
+    else {
+        list->head = node->next;
+    }
+    if (node->next) {
+        node->next->prev = node->prev;
+    }
+    else {
+        list->tail = node->prev;
+    }
+
+    node->next = node->prev = NULL;
+    list->size--;
+
+    if (delete_data && list->data_free_func) {
+        t("list->data_free_func(node->data)");
+        list->data_free_func(node->data);
+    }
+
+    free(node);
 }

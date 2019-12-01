@@ -7,11 +7,13 @@
 #define WARN    1
 #define INFO    1
 #define DEBUG   1
+#define TRACE   1
 
 #define ERROR_TAG   "[E] "
 #define WARN_TAG    "[W] "
 #define INFO_TAG    "[I] "
 #define DEBUG_TAG   "[D] "
+#define TRACE_TAG   "[T] "
 
 #define MACRO_PICKER(_1, _2, _3, _4, _5, _6, NAME, ...) NAME
 
@@ -109,5 +111,29 @@
 #endif
 
 #define d(...) MACRO_PICKER(__VA_ARGS__, d5, d4, d3, d2, d1, d0)(__VA_ARGS__)
+
+#if TRACE
+#define t0(fmt) \
+    printf(TRACE_TAG fmt " [%s:%d]\n", __func__, __LINE__)
+#define t1(fmt, a1) \
+    printf(TRACE_TAG fmt " [%s:%d]\n", a1, __func__, __LINE__)
+#define t2(fmt, a1, a2) \
+    printf(TRACE_TAG fmt " [%s:%d]\n", a1, a2, __func__, __LINE__)
+#define t3(fmt, a1, a2, a3) \
+    printf(TRACE_TAG fmt " [%s:%d]\n", a1, a2, a3, __func__, __LINE__)
+#define t4(fmt, a1, a2, a3, a4) \
+    printf(TRACE_TAG fmt " [%s:%d]\n", a1, a2, a3, a4__func__, __LINE__)
+#define t5(fmt, a1, a2, a3, a4, a5) \
+    printf(TRACE_TAG fmt " [%s:%d]\n", a1, a2, a3, a4, a5, __func__, __LINE__)
+#else
+#define t0(fmt)
+#define t1(fmt, a1)
+#define t2(fmt, a1, a2)
+#define t3(fmt, a1, a2, a3)
+#define t4(fmt, a1, a2, a3, a4)
+#define t5(fmt, a1, a2, a3, a4, a5)
+#endif
+
+#define t(...) MACRO_PICKER(__VA_ARGS__, t5, t4, t3, t2, t1, t0)(__VA_ARGS__)
 
 #endif // LOGGING_H

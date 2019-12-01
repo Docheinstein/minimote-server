@@ -10,10 +10,6 @@ list_node * list_node_new(void *data) {
     return node;
 }
 
-void list_node_free(list_node *node) {
-    free(node);
-}
-
 list_node *list_node_next(list_node *node) {
     if (node)
         return node->next;

@@ -19,4 +19,6 @@ void minimote_client_init(
         minimote_controller_config controller_config
 );
 
+void minimote_client_destroy(minimote_client *client);
+
 #endif // MINIMOTE_CLIENT_H

@@ -8,7 +8,6 @@ typedef struct list_node_t {
 } list_node;
 
 list_node * list_node_new(void *data);
-void list_node_free(list_node *node);
 
 void list_node_forward(list_node **node);
 void list_node_backward(list_node **node);

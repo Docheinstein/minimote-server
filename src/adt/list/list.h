@@ -9,9 +9,11 @@ typedef struct list_t {
     list_node * head;
     list_node * tail;
     uint64 size;
+    void (*data_free_func)(void *);
 } list;
 
 void list_init(list *list);
+void list_init_full(list *list, void (*data_free_func)(void *));
 
 uint64 list_size(list *list);
 list_node * list_head(list *list);
@@ -20,7 +22,8 @@ list_node * list_tail(list *list);
 void list_prepend(list *list, void *data);
 void list_append(list *list, void *data);
 
-void list_remove(list *list, list_node *node);
+void list_remove(list *list, list_node *node); // Frees list_node but not the data
+void list_delete(list *list, list_node *node); // Frees list_node and list_node->data
 
 void list_foreach(
         list *list,

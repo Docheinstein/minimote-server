@@ -44,6 +44,11 @@ void rolling_buffer_advance(rolling_buffer *rbuffer, uint32 count) {
     rbuffer->start += count;
 }
 
+void rolling_buffer_destroy(rolling_buffer *rbuffer) {
+    t();
+    free(rbuffer->buffer);
+}
+
 void rolling_buffer_do_roll(rolling_buffer *rbuffer) {
     // The current situation should be something like this
     // | -- garbabe ------------------------ (START) ---- (END) -- |

@@ -15,6 +15,7 @@ CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o
 CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o
  ../src/adt/list/node/list_node.h
  ../src/commons/globals.h
+ ../src/logging/logging.h
  /home/stefano/Develop/C/MinimoteServer/src/adt/list/list.c
  /home/stefano/Develop/C/MinimoteServer/src/adt/list/list.h
 CMakeFiles/MinimoteServer.dir/src/adt/list/node/list_node.c.o
@@ -62,6 +63,7 @@ CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o
  ../src/adt/list/node/list_node.h
  ../src/buffer/rolling_buffer.h
  ../src/commons/globals.h
+ ../src/logging/logging.h
  ../src/minimote/controller/minimote_controller.h
  ../src/minimote/keys/minimote_key_type.h
  ../src/minimote/x11/minimote_x11.h

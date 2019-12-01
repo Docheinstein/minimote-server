@@ -19,11 +19,15 @@
 
 #define MAX_PACKET_LENGTH 64
 #define HOTKEY_INTER_KEYS_TIMEOUT_MS 5
+#define SOCKET_TIMEOUT_SEC 600
+//#define SOCKET_TIMEOUT_SEC 3
 
 // Hash functions for clients
 
 static uint32 sockaddr_in_hash_func(void *arg);
 static bool sockaddr_in_key_eq_func(void *arg1, void *arg2);
+static void sockaddr_free_func(void *arg);
+static void client_free_func(void *arg);
 
 // Internal helper functions
 
@@ -63,7 +67,10 @@ void minimote_server_init(minimote_server *server,
     server->udp_port = udp_port;
 
     server->controller_config = config;
-    hash_init(&server->clients, 16, sockaddr_in_hash_func, sockaddr_in_key_eq_func);
+    hash_init_full(
+            &server->clients, 16,
+            sockaddr_in_hash_func, sockaddr_in_key_eq_func,
+            sockaddr_free_func, client_free_func);
 
     int ok = gethostname(server->hostname, MAX_HOSTNAME_LENGTH);
     if (ok < 0) {
@@ -87,8 +94,12 @@ bool minimote_server_start_tcp(minimote_server *server) {
     }
 
     int opt = 1;
-    setsockopt(server->tcp_socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
-               &opt, sizeof(opt));
+
+    // SO_REUSEADDR, SO_REUSEPORT
+    if (setsockopt(server->tcp_socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
+               &opt, sizeof(opt)) < 0) {
+        e("setsockopt error: %s", strerror(errno));
+    }
 
     server_address.sin_family = AF_INET;
     server_address.sin_addr.s_addr = INADDR_ANY;
@@ -366,6 +377,14 @@ void *minimote_server_handle_tcp_client(void *arg) {
     d("Handling TCP client [%d] on connection fd = %d",
             handle_arg->client->id, handle_arg->client->tcp_socket_fd);
 
+    // SO_RCVTIMEO
+    struct timeval socket_timeout;
+    socket_timeout.tv_sec = SOCKET_TIMEOUT_SEC;
+    if (setsockopt(handle_arg->client->tcp_socket_fd, SOL_SOCKET, SO_RCVTIMEO,
+                   &socket_timeout, sizeof(socket_timeout)) < 0) {
+        w("setsockopt error: %s", strerror(errno));
+    }
+
     byte message_buffer[MAX_PACKET_LENGTH];
 
     while (handle_arg->server->tcp_running) {
@@ -376,8 +395,13 @@ void *minimote_server_handle_tcp_client(void *arg) {
 
         int received_bufflen = recv(handle_arg->client->tcp_socket_fd, message_buffer, MAX_PACKET_LENGTH, 0);
 
-        if (received_bufflen <= 0) {
-            w("Error in recv(), closing connection %d\n", handle_arg->client->tcp_socket_fd);
+        if (received_bufflen == 0) {
+            i("Closing connection %d with client [%d] properly",
+                    handle_arg->client->tcp_socket_fd, handle_arg->client->id);
+            break;
+        } else if (received_bufflen <= 0) {
+            w("Error in recv(), closing connection %d with client [%d] for reason: %s",
+                    handle_arg->client->tcp_socket_fd, handle_arg->client->id, strerror(errno));
             break;
         }
 
@@ -393,7 +417,10 @@ void *minimote_server_handle_tcp_client(void *arg) {
         while (minimote_server_try_handle_client_buffer(handle_arg->server, handle_arg->client));
     }
 
+    // Remove the client, close the socket and release resources
     close(handle_arg->client->tcp_socket_fd);
+    hash_delete(&handle_arg->server->clients, (void *) &handle_arg->client->address);
+
     free(arg);
 
     return NULL;
@@ -468,4 +495,14 @@ bool minimote_server_try_handle_client_buffer(minimote_server *server, minimote_
     minimote_server_handle_packet_from_client(server, &packet, client);
 
     return true;
+}
+
+void sockaddr_free_func(void *arg /* (struct sockaddr_in *) */) {
+    t();
+    free(arg);
+}
+
+void client_free_func(void *arg /* minimote_client * */) {
+    t();
+    minimote_client_destroy(arg);
 }

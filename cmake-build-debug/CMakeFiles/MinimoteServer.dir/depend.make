@@ -14,6 +14,7 @@ CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o: ../src/adt/hash/n
 
 CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o: ../src/adt/list/node/list_node.h
 CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o: ../src/commons/globals.h
+CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o: ../src/logging/logging.h
 CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o: ../src/adt/list/list.c
 CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o: ../src/adt/list/list.h
 
@@ -61,6 +62,7 @@ CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/ad
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/adt/list/node/list_node.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/buffer/rolling_buffer.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/commons/globals.h
+CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/logging/logging.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/minimote/controller/minimote_controller.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/minimote/keys/minimote_key_type.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/minimote/x11/minimote_x11.h

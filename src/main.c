@@ -8,6 +8,8 @@
 #include "logging/logging.h"
 #include "commons/conf/conf.h"
 
+static void test_hash();
+
 static void * start_udp_server(void *arg) {
     minimote_server * server = (minimote_server *) arg;
     minimote_server_start_udp(server);
@@ -23,6 +25,9 @@ static void * start_tcp_server(void *arg) {
 }
 
 int main(int argc, char *argv[]) {
+    test_hash();
+//    exit(-1);
+
     // Parse arguments
     i("MinimoteServer version " MINIMOTE_SERVER_VERSION);
 
@@ -48,4 +53,7 @@ int main(int argc, char *argv[]) {
 
     pthread_join(thread_udp, NULL);
     pthread_join(thread_tcp, NULL);
+}
+void test_hash() {
+
 }
