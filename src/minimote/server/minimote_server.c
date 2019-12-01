@@ -405,7 +405,7 @@ void minimote_server_handle_packet_from_client(
             if (minimote_server_answer_discover_request(server, client)) {
                 d("Answered to DISCOVER");
             } else {
-                w("Failed to answer to DISCOVER\n");
+                w("Failed to answer to DISCOVER: %s", strerror(errno));
             }
 
             break;
@@ -430,8 +430,8 @@ bool minimote_server_answer_discover_request(minimote_server *server, minimote_c
     minimote_packet_data(&response, packet_data);
 
     return sendto(
-            server->udp_socket,packet_data,response.packet_length,MSG_CONFIRM,
-            (const struct sockaddr *) &client->address,sizeof(client->address)) > 0;
+            server->udp_socket, packet_data,response.packet_length,MSG_CONFIRM,
+            (const struct sockaddr *) &client->address, sizeof(client->address)) > 0;
 }
 
 minimote_client *minimote_server_get_or_put_client(minimote_server *server, struct sockaddr_in *client_sockaddr) {
@@ -450,8 +450,7 @@ minimote_client *minimote_server_get_or_put_client(minimote_server *server, stru
 
         // Make a copy of sockaddr_in in order to use it as key
         struct sockaddr_in *client_sockaddr_copy = malloc(sizeof(struct sockaddr_in));
-        client_sockaddr_copy->sin_addr = client_sockaddr->sin_addr;
-        client_sockaddr_copy->sin_port = client_sockaddr->sin_port;
+        memcpy(client_sockaddr_copy, client_sockaddr, sizeof(struct sockaddr_in));
 
         // Init the client
         client = malloc(sizeof(minimote_client));
