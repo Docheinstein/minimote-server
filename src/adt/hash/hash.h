@@ -31,14 +31,12 @@ void hash_init_full(
 );
 
 bool hash_put(hash *hash, void *key, void *value);
-//void hash_put_if_not_exists(hash *hash, void *key, void *value);
 
 void * hash_get(hash *hash, void *key);
 
-//void * hash_take(hash *hash, void *key);
+void * hash_take(hash *hash, void *key);
 bool hash_delete(hash *hash, void *key);
 
 void hash_foreach(hash *hash, void (*fun)(hash_node *node, void *), void *arg);
-//void hash_foreach1(hash *hash, void (*fun)(hash_node *node, void *argument), void *arg);
 
 #endif // HASH_H

@@ -84,7 +84,7 @@ void minimote_server_init(minimote_server *server,
     if (ok < 0) {
         w("Error resolving hostname");
     } else {
-        d("Initialized minimote server, hostname = %s", server->hostname);
+        i("Minimote server initialized with hostname = %s", server->hostname);
     }
 }
 
@@ -208,7 +208,7 @@ bool minimote_server_start(minimote_server *server) {
 // -----
 
 void minimote_server_handle_tcp_ready(minimote_server *server) {
-    d("TCP socket is ready for read data");
+    v("TCP socket is ready for read data");
 
     // Handle new connection
     struct sockaddr_in client_address;
@@ -222,7 +222,7 @@ void minimote_server_handle_tcp_ready(minimote_server *server) {
 
     char client_ip[INET_ADDRSTRLEN];
 
-    i("Received TCP connection from %s:%d (socket fd = %d)",
+    i("Received TCP connection from %s:%d (connection = {%d})",
            sockaddr_to_ipv4(client_address, client_ip),
            client_address.sin_port,
            connectionfd);
@@ -242,7 +242,7 @@ void minimote_server_handle_tcp_ready(minimote_server *server) {
 }
 
 void minimote_server_handle_udp_ready(minimote_server *server) {
-    d("UDP socket is ready for read data");
+    v("UDP socket is ready for read data");
 
     byte buffer[MAX_PACKET_LENGTH];
     struct sockaddr_in client_address;
@@ -258,13 +258,13 @@ void minimote_server_handle_udp_ready(minimote_server *server) {
     }
 
     if (received_bufflen == 0) {
-        d("EOF on socket %d: %s", server->udp_socket, strerror(errno));
+        v("EOF on socket %d: %s", server->udp_socket, strerror(errno));
         return;
     }
 
     char client_ip[INET_ADDRSTRLEN];
 
-    d("Received UDP message (%d bytes) from %s:%d",
+    v("Received UDP message (%d bytes) from %s:%d",
            received_bufflen,
            sockaddr_to_ipv4(client_address, client_ip),
            client_address.sin_port);
@@ -284,7 +284,7 @@ void minimote_server_handle_udp_ready(minimote_server *server) {
 bool minimote_server_handle_client_ready(minimote_server *server, minimote_client *client) {
     byte message_buffer[MAX_PACKET_LENGTH];
 
-    d("Blocking on recv() on connection %d", client->tcp_socket_fd);
+    v("Blocking on recv() on connection %d", client->tcp_socket_fd);
     int received_bufflen = recv(client->tcp_socket_fd, message_buffer, MAX_PACKET_LENGTH, 0);
 
     if (received_bufflen < 0) {
@@ -293,11 +293,11 @@ bool minimote_server_handle_client_ready(minimote_server *server, minimote_clien
     }
 
     if (received_bufflen == 0) {
-        d("EOF, closing connection %d properly", client->tcp_socket_fd);
+        v("EOF, closing connection %d properly", client->tcp_socket_fd);
         return false;
     }
 
-    d("Received TCP message (%d bytes) from client [%d] on connection %d\n",
+    v("Received TCP message (%d bytes) from client [%d] on connection {%d}",
       received_bufflen,
       client->id,
       client->tcp_socket_fd);
@@ -316,7 +316,10 @@ void minimote_server_handle_packet_from_client(
         minimote_packet *packet,
         minimote_client *client) {
 
-    d("Handling packet from client [%d]", client->id);
+    i("Handling packet %s from client [%d] of type",
+            minimote_packet_type_to_string(packet->packet_type),
+            client->id);
+
     minimote_packet_dump(packet);
 
     switch (packet->packet_type) {
@@ -400,21 +403,17 @@ void minimote_server_handle_packet_from_client(
             break;
         }
         case DISCOVER_REQUEST: {
-            d("Received DISCOVER_REQUEST");
-
             if (minimote_server_answer_discover_request(server, client)) {
-                d("Answered to DISCOVER");
+                v("Answered to DISCOVER");
             } else {
                 w("Failed to answer to DISCOVER: %s", strerror(errno));
             }
-
             break;
         }
         default:
             w("Cannot handle event: %d", packet->packet_type);
     }
 }
-
 
 bool minimote_server_answer_discover_request(minimote_server *server, minimote_client *client) {
     d("Answering to discover request, with hostname = %s", server->hostname);
@@ -524,24 +523,22 @@ void minimote_server_setup_select_fds(minimote_server *server) {
 
 uint32 sockaddr_in_hash_func(void *arg) {
     struct sockaddr_in *sockaddr = (struct sockaddr_in *) arg;
-    return sockaddr->sin_addr.s_addr | sockaddr->sin_port | (sockaddr->sin_port << 16);
+    return sockaddr->sin_addr.s_addr /* | sockaddr->sin_port | (sockaddr->sin_port << 16) */;
 }
 
 bool sockaddr_in_key_eq_func(void *arg1, void *arg2) {
     struct sockaddr_in *sockaddr1 = (struct sockaddr_in *) arg1;
     struct sockaddr_in *sockaddr2 = (struct sockaddr_in *) arg2;
     return
-            sockaddr1->sin_addr.s_addr == sockaddr2->sin_addr.s_addr &&
-            sockaddr1->sin_port == sockaddr2->sin_port;
+            sockaddr1->sin_addr.s_addr == sockaddr2->sin_addr.s_addr /* &&
+            sockaddr1->sin_port == sockaddr2->sin_port */;
 }
 
 void sockaddr_in_free_func(void *arg /* (struct sockaddr_in *) */) {
-    t();
     free(arg);
 }
 
 void minimote_client_free_func(void *arg /* minimote_client * */) {
-    t();
     // Close TCP socket too
     minimote_client *client = (minimote_client *) arg;
     close(client->tcp_socket_fd);
@@ -549,27 +546,25 @@ void minimote_client_free_func(void *arg /* minimote_client * */) {
 }
 
 void clients_iterator_check_client_socket(hash_node *hnode, void *arg) {
-    t();
-
     minimote_server *server = (minimote_server *) arg;
     minimote_client *client = hnode->value;
 
     if (FD_ISSET(client->tcp_socket_fd, &server->read_sockets)) {
-        d("Client [%d] is ready to read on connection = %d",
+        v("Client [%d] is ready to read on connection {%d}",
           client->id, client->tcp_socket_fd);
         if (!minimote_server_handle_client_ready(server, client)) {
             // Remove the client, close the socket and release resources
-            d("Closing connection %d associated with client %d", client->tcp_socket_fd, client->id);
+            i("Closing connection {%d} associated with client [%d]", client->tcp_socket_fd, client->id);
             hash_delete(&server->clients, (void *) &client->address);
         }
     }
 
     if (FD_ISSET(client->tcp_socket_fd, &server->error_sockets)) {
-        d("Client [%d] exception on connection = %d",
+        v("Client [%d] exception on connection {%d}",
           client->id, client->tcp_socket_fd);
 //        if (!minimote_server_handle_client_ready(server, client)) {
 //            // Remove the client, close the socket and release resources
-//            d("Closing connection %d associated with client %d", client->tcp_socket_fd, client->id);
+//            v("Closing connection %d associated with client %d", client->tcp_socket_fd, client->id);
 //            hash_delete(&server->clients, (void *) &client->address);
 //        }
     }

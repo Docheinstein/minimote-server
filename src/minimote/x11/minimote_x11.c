@@ -123,7 +123,7 @@ void minimote_x11_write(minimote_x11 *mx, uint32 unicode_key) {
         w("Unknown key for this layout %u", unicode_key);
         return;
     }
-    d("Write");
+    d("Writing");
     d("- unicode = %d", unicode_key);
     d("- keycode = %d", ks->keycode);
     d("- modifier_index = %d", ks->keysym_pos);
@@ -285,7 +285,7 @@ void minimote_x11_retrieve_keymap(minimote_x11 *mx) {
             ks->keycode = keycode;
             ks->keysym_pos = modifier;
 
-            d("[K (keysym) = %lu -> V (keycode, modifier) = %d, %d]",
+            v("[K (keysym) = %lu -> V (keycode, modifier) = %d, %d]",
               *keysym, ks->keycode, ks->keysym_pos);
 
             hash_put(&mx->keymap, keysym, ks);

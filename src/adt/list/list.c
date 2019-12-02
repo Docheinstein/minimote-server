@@ -1,11 +1,10 @@
 #include "list.h"
 
 #include "stddef.h"
-#include <stdio.h>
 #include <malloc.h>
 #include <logging/logging.h>
 
-static void list_delete_cond(list *list, list_node *node, bool delete_data);
+static bool list_take_or_delete(list *list, list_node *node, bool delete);
 
 void list_init(list *list) {
     list->head = list->tail = NULL;
@@ -58,12 +57,12 @@ void list_append(list *list, void *data) {
     ++list->size;
 }
 
-void list_remove(list *list, list_node *node) {
-    list_delete_cond(list, node, false);
+list_node * list_take(list *list, list_node *node) {
+    return list_take_or_delete(list, node, false) ? node : NULL;
 }
 
-void list_delete(list *list, list_node *node) {
-    list_delete_cond(list, node, true);
+bool list_delete(list *list, list_node *node) {
+    return list_take_or_delete(list, node, true);
 }
 
 void list_foreach(
@@ -73,60 +72,6 @@ void list_foreach(
     while (it) {
         fun(it->data);
         it = it->next;
-    }
-}
-
-void list_foreach1(
-        list *list,
-        void (*fun)(void *, void *),
-        void *arg) {
-    list_node *it = list->head;
-    while (it) {
-        fun(it->data, arg);
-        it = it->next;
-    }
-}
-
-void list_foreach2(
-        list *list,
-        void (*fun)(void *, void *, void *),
-        void *arg1, void *arg2) {
-    list_node *it = list->head;
-    while (it) {
-        fun(it->data, arg1, arg2);
-        it = it->next;
-    }
-}
-
-void list_foreach_i(list *list, void (*fun)(void *, int)) {
-    list_node *it = list->head;
-    int i = 0;
-    while (it) {
-        fun(it->data, i);
-        it = it->next;
-        i++;
-    }
-}
-
-void list_foreach_i1(list *list, void (*fun)(void *, int , void *), void *arg) {
-    list_node *it = list->head;
-    int i = 0;
-    while (it) {
-        fun(it->data, i, arg);
-        it = it->next;
-        i++;
-    }
-}
-
-void list_foreach2_i(
-        list *list, void (*fun)(void *, int, void *, void *),
-        void *arg1, void *arg2) {
-    list_node *it = list->head;
-    int i = 0;
-    while (it) {
-        fun(it->data, i, arg1, arg2);
-        it = it->next;
-        i++;
     }
 }
 
@@ -152,34 +97,11 @@ list_node *list_until(list *list, bool (*finder)(void *)) {
     return NULL;
 }
 
-list_node *list_until1(list *list, bool (*finder)(void *, void *), void *arg) {
-    list_node *it = list->head;
-    while (it) {
-        if (finder(it->data, arg))
-            return it;
-        it = it->next;
-    }
-    return NULL;
-}
-
-
-list_node *list_until2(
-        list *list, bool (*finder)(void *, void *, void *),
-        void *arg1, void *arg2) {
-    list_node *it = list->head;
-    while (it) {
-        if (finder(it->data, arg1, arg2))
-            return it;
-        it = it->next;
-    }
-    return NULL;
-}
-
 // --
 
-void list_delete_cond(list *list, list_node *node, bool delete_data) {
+bool list_take_or_delete(list *list, list_node *node, bool delete) {
     if (!node)
-        return;
+        return false;
 
     if (node->prev) {
         node->prev->next = node->next;
@@ -197,10 +119,11 @@ void list_delete_cond(list *list, list_node *node, bool delete_data) {
     node->next = node->prev = NULL;
     list->size--;
 
-    if (delete_data && list->data_free_func) {
-        t("list->data_free_func(node->data)");
+    if (delete && list->data_free_func) {
+        d("list->data_free_func()");
         list->data_free_func(node->data);
     }
 
     free(node);
+    return true;
 }

@@ -1,7 +1,7 @@
 #include "rolling_buffer.h"
 #include <stdlib.h>
 #include <string.h>
-#include <logging/logging.h>
+#include "logging/logging.h"
 
 static void rolling_buffer_do_roll(rolling_buffer *rbuffer);
 
@@ -45,7 +45,6 @@ void rolling_buffer_advance(rolling_buffer *rbuffer, uint32 count) {
 }
 
 void rolling_buffer_destroy(rolling_buffer *rbuffer) {
-    t();
     free(rbuffer->buffer);
 }
 

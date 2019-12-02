@@ -4,6 +4,7 @@
 #include "commons/globals.h"
 
 typedef struct arguments_t {
+    bool help;
     int port;
     float mouse_sensibility;
     int scroll_boost;

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define PARAM_HELP "-h"
 #define PARAM_PORT "-p"
 #define PARAM_MOUSE_SENSIBILITY "-m"
 #define PARAM_SCROLL_SENSIBILITY "-s"
@@ -10,6 +11,7 @@
 
 arguments arguments_parse(int argc, char **argv) {
     arguments args;
+    args.help = false;
     args.port = MINIMOTE_DEFAULT_PORT;
     args.mouse_sensibility = MINIMOTE_DEFAULT_MOUSE_SENSIBILITY;
     args.scroll_boost = MINIMOTE_DEFAULT_SCROLL_SENSIBILITY;
@@ -40,6 +42,11 @@ arguments arguments_parse(int argc, char **argv) {
         // -r
         if (!strncmp(PARAM_SCROLL_REVERSE, argv[i], 2)) {
             args.scroll_reverse = true;
+        }
+
+        // -h
+        if (!strncmp(PARAM_HELP, argv[i], 2)) {
+            args.help = true;
         }
     }
 

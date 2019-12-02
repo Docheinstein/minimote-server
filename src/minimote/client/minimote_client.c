@@ -1,6 +1,4 @@
 #include <pthread.h>
-#include <malloc.h>
-#include <logging/logging.h>
 #include "minimote_client.h"
 
 #define TCP_BUFFER_SIZE 4096
@@ -29,6 +27,5 @@ void minimote_client_init(
 }
 
 void minimote_client_destroy(minimote_client *client) {
-    t();
     rolling_buffer_destroy(&client->tcp_buffer);
 }

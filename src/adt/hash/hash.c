@@ -5,15 +5,8 @@
 #include <logging/logging.h>
 
 
-static void hash_put_or_replace(hash *hash, void *key, void *value, bool replace);
-//static void hash_node_visitor(void *node_data, void *node_visit_fun);
-//static void hash_node_visitor_arg(void *node_data, void *node_visit_fun, void *arg);
-static bool hash_node_key_comparator(void *node_data, void *arg1, void *arg2);
 static hash_node * hash_get_node(hash *hash, void *key);
-
-static void * hash_take_cond(hash *hash, void *key, bool delete);
-
-
+static void * hash_take_or_delete(hash *hash, void *key, bool delete, bool *found);
 
 void hash_init(
         hash *hash,
@@ -62,34 +55,38 @@ bool hash_put(hash *hash, void *key, void *value) {
     }
 
     if (node) {
-        d("Node already in the bucket");
+        d("hash_put: key already in the bucket, replacing node key/val");
 
         if (hash->key_free_func) {
-            d("Freeing key");
+            d("hash_put: freeing key");
             hash->key_free_func(node->key);
         }
 
         if (hash->value_free_func) {
-            d("Freeing value");
+            d("hash_put: freeing value");
             hash->value_free_func(node->value);
         }
 
-        d("Setting new key and value for existing node");
+        d("hash_put: setting key/val");
         node->key = key;
         node->value = value;
 
         return false;
     }
     else {
-        d("Node not in the bucket, inserting new node with this key");
-        node = hash_node_new(key, value, hashed_key);
+        d("hash_put: inserting new node with this key");
+        node = hash_node_new(key, value);
 
-        if (prev)
+        if (prev) {
             // There is a predecessor, link the new node
+            d("hash_put: linking prev with this node");
             prev->next = node;
-        else
+        }
+        else {
             // First node, use the node as the head of the bucket
+            d("hash_put: inserting first node of the bucket [%d]", bucket_index);
             hash->buckets[bucket_index] = node;
+        }
 
         return true;
     }
@@ -102,97 +99,19 @@ void * hash_get(hash *hash, void *key) {
     return hnode->value;
 }
 
-void *hash_take_cond(hash *hash, void *key, bool delete) {
-//    uint32 bucket_index = hash->hash_func(key) % hash->capacity;
-//
-//    if (!hash->buckets[bucket_index])
-//        return NULL;
-//
-//    hash_node *node = NULL;
-//    hash_node *it = hash->buckets[bucket_index];
-//    hash_node *prev = NULL;
-//    while (it) {
-//        if (hash->key_eq_func(it->key, key)) {
-//            node = it;
-//            break;
-//        }
-//        prev = it;
-//        it = it->next;
-//    }
-//
-//    if (!node)
-//        return NULL;
-//
-//    // Node found
-//    if (delete) {
-//        // free the key and the value of the node
-//
-//        if (hash->key_free_func) {
-//            t("hash->key_free_func()");
-//            hash->key_free_func(node->key);
-//        }
-//
-//        if (hash->value_free_func) {
-//            t("hash->value_free_func()");
-//            hash->value_free_func(node->value);
-//        }
-//    }
-//
-//    prev->next = NULL;
-//    free(node);
-//
-//    return value;
+void *hash_take(hash *hash, void *key) {
+    return hash_take_or_delete(hash, key, false, NULL);
 }
-//
-//void * hash_take(hash *hash, void *key) {
-//    return hash_take_cond(hash, key, false);
-//}
 
 bool hash_delete(hash *hash, void *key) {
-    uint32 bucket_index = hash->hash_func(key) % hash->capacity;
-
-    hash_node *node = NULL;
-    hash_node *it = hash->buckets[bucket_index];
-    hash_node *prev = NULL;
-    while (it) {
-        if (hash->key_eq_func(it->key, key)) {
-            node = it;
-            break;
-        }
-        prev = it;
-        it = it->next;
-    }
-
-    if (!node)
-        return false;
-
-    // Node found
-    // free the key and the value of the node
-
-    if (hash->key_free_func) {
-        d("hash->key_free_func()");
-        hash->key_free_func(node->key);
-    }
-
-    if (hash->value_free_func) {
-        d("hash->value_free_func()");
-        hash->value_free_func(node->value);
-    }
-
-    if (prev)
-        prev->next = NULL;
-    else
-        hash->buckets[bucket_index] = NULL;
-
-    free(node);
-
-    return true;
+    bool found;
+    hash_take_or_delete(hash, key, true, &found);
+    return found;
 }
-
 
 void hash_foreach(hash *hash, void (*fun)(hash_node *, void *), void *arg) {
     for (uint32 i = 0; i < hash->capacity; i++) {
-        t("Inspecting bucket %d", i);
+        d("Inspecting bucket %d", i);
         if (!hash->buckets[i])
             // Skip empty buckets
             continue;
@@ -205,35 +124,8 @@ void hash_foreach(hash *hash, void (*fun)(hash_node *, void *), void *arg) {
     }
 }
 
-//void hash_foreach1(hash *hash, void (*fun)(hash_node *, void *), void *arg) {
-//    for (uint32 i = 0; i < hash->capacity; i++) {
-//        if (!hash->buckets[i])
-//            continue;
-//        list_foreach2(hash->buckets[i], hash_node_visitor_arg, fun, arg);
-//    }
-//}
+// _______________________________________________
 
-
-// ----
-
-//void hash_node_visitor(void * node_data, void *node_visit_fun) {
-//    void (*hash_node_visitor_fun)(hash_node *) = node_visit_fun;
-//    hash_node * hnode = node_data;
-//    hash_node_visitor_fun(hnode);
-//}
-//
-//void hash_node_visitor_arg(void * node_data, void *node_visit_fun, void *arg) {
-//    void (*hash_node_visitor_fun)(hash_node *, void *) = node_visit_fun;
-//    hash_node * hnode = node_data;
-//    hash_node_visitor_fun(hnode, arg);
-//}
-
-//bool hash_node_key_comparator(void *node_data, void *arg1, void *arg2) {
-//    bool (*key_eq_func)(void *, void *) = arg1;
-//    void *key = arg2;
-//    hash_node * hnode = node_data;
-//    return key_eq_func(hnode->key, key);
-//}
 
 hash_node * hash_get_node(hash *hash, void *key) {
     uint32 bucket_index = hash->hash_func(key) % hash->capacity;
@@ -249,4 +141,64 @@ hash_node * hash_get_node(hash *hash, void *key) {
     }
 
     return NULL;
+}
+
+
+void * hash_take_or_delete(hash *hash, void *key, bool delete, bool *found) {
+    uint32 bucket_index = hash->hash_func(key) % hash->capacity;
+
+    hash_node *node = NULL;
+    hash_node *it = hash->buckets[bucket_index];
+    hash_node *prev = NULL;
+
+    while (it) {
+        if (hash->key_eq_func(it->key, key)) {
+            node = it;
+            break;
+        }
+        prev = it;
+        it = it->next;
+    }
+
+    if (!node) {
+        d("hash_take_or_delete: node not found");
+        if (found)
+            *found = false;
+        return NULL;
+    }
+
+    d("hash_take_or_delete: node found");
+    if (found)
+        *found = true;
+
+    // Node found
+    void *node_value = node->value;
+
+    // Free the key anyhow
+    if (hash->key_free_func) {
+        d("hash->key_free_func()");
+        hash->key_free_func(node->key);
+    }
+
+    // Free the value only if delete is required, otherwise it shall be
+    // returned and thus not freed
+    if (delete) {
+        if (hash->value_free_func) {
+            d("hash->value_free_func()");
+            hash->value_free_func(node->value);
+        }
+    }
+
+    if (prev) {
+        d("hash_take_or_delete: unlinking, not last in bucket");
+        prev->next = NULL;
+    }
+    else {
+        d("hash_take_or_delete: unlinking, last in bucket");
+        hash->buckets[bucket_index] = NULL;
+    }
+
+    free(node);
+
+    return node_value;
 }

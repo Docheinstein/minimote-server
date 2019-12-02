@@ -6,10 +6,9 @@
 typedef struct hash_node_t {
     void * key;
     void * value;
-    uint32 hash;
     struct hash_node_t * next;
 } hash_node;
 
-hash_node * hash_node_new(void *key, void *data, uint32 hash);
+hash_node * hash_node_new(void *key, void *data);
 
 #endif // HASH_NODE_H

@@ -53,6 +53,4 @@ void minimote_controller_key_click(minimote_controller *controller, minimote_key
 void minimote_controller_hotkey(minimote_controller *controller,
         minimote_key_type * minimote_keys, int minimote_key_count);
 
-
-
 #endif // MINIMOTE_CONTROLLER_H

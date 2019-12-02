@@ -43,7 +43,7 @@ void minimote_controller_move(minimote_controller *controller,
         return;
     }
 
-    d("Handling movement (MID: %d, X: %d, Y: %d)\n", mid, x, y);
+    v("Handling movement (MID: %d, X: %d, Y: %d)\n", mid, x, y);
 
     if (controller->last_move_time > 0 &&
         controller->last_move_id == mid) {
