@@ -21,6 +21,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/stefano/Develop/C/MinimoteServer/src/minimote/packet/type/minimote_packet_type.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o"
   "/home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o"
   "/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o"
+  "/home/stefano/Develop/C/MinimoteServer/src/test/test.c" "/home/stefano/Develop/C/MinimoteServer/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/test/test.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

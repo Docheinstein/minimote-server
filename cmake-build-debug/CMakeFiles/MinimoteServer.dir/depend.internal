@@ -57,6 +57,7 @@ CMakeFiles/MinimoteServer.dir/src/main.c.o
  /home/stefano/Develop/C/MinimoteServer/src/logging/logging.h
  /home/stefano/Develop/C/MinimoteServer/src/main.c
  /home/stefano/Develop/C/MinimoteServer/src/minimote/server/minimote_server.h
+ /home/stefano/Develop/C/MinimoteServer/src/test/test.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o
  ../src/adt/hash/hash.h
  ../src/adt/hash/node/hash_node.h
@@ -64,7 +65,6 @@ CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o
  ../src/adt/list/node/list_node.h
  ../src/buffer/rolling_buffer.h
  ../src/commons/globals.h
- ../src/logging/logging.h
  ../src/minimote/controller/minimote_controller.h
  ../src/minimote/keys/minimote_key_type.h
  ../src/minimote/x11/minimote_x11.h
@@ -128,3 +128,12 @@ CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o
  ../src/minimote/keys/minimote_key_type_x11_map.h
  /home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.c
  /home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.h
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o
+ ../src/adt/hash/hash.h
+ ../src/adt/hash/node/hash_node.h
+ ../src/adt/list/list.h
+ ../src/adt/list/node/list_node.h
+ ../src/commons/globals.h
+ ../src/logging/logging.h
+ /home/stefano/Develop/C/MinimoteServer/src/test/test.c
+ /home/stefano/Develop/C/MinimoteServer/src/test/test.h

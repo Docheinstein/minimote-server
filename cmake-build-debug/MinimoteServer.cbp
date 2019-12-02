@@ -189,6 +189,12 @@
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/minimote/x11/minimote_x11.h">
 			<Option target="MinimoteServer"/>
 		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/test/test.c">
+			<Option target="MinimoteServer"/>
+		</Unit>
+		<Unit filename="/home/stefano/Develop/C/MinimoteServer/src/test/test.h">
+			<Option target="MinimoteServer"/>
+		</Unit>
 		<Unit filename="/home/stefano/Develop/C/MinimoteServer/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

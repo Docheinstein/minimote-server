@@ -16,6 +16,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MinimoteServer.dir/src/minimote/packet/type/minimote_packet_type.c.o"
   "CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o"
   "CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o"
+  "CMakeFiles/MinimoteServer.dir/src/test/test.c.o"
   "MinimoteServer"
   "MinimoteServer.pdb"
 )

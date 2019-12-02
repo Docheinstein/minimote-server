@@ -56,6 +56,7 @@ CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/commons/conf/conf.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/logging/logging.h
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/main.c
 CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/minimote/server/minimote_server.h
+CMakeFiles/MinimoteServer.dir/src/main.c.o: ../src/test/test.h
 
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/adt/hash/hash.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/adt/hash/node/hash_node.h
@@ -63,7 +64,6 @@ CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/ad
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/adt/list/node/list_node.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/buffer/rolling_buffer.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/commons/globals.h
-CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/logging/logging.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/minimote/controller/minimote_controller.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/minimote/keys/minimote_key_type.h
 CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o: ../src/minimote/x11/minimote_x11.h
@@ -127,4 +127,13 @@ CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/keys/minimote_key_type_x11_map.h
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/x11/minimote_x11.c
 CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o: ../src/minimote/x11/minimote_x11.h
+
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o: ../src/adt/hash/hash.h
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o: ../src/adt/hash/node/hash_node.h
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o: ../src/adt/list/list.h
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o: ../src/adt/list/node/list_node.h
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o: ../src/commons/globals.h
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o: ../src/logging/logging.h
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o: ../src/test/test.c
+CMakeFiles/MinimoteServer.dir/src/test/test.c.o: ../src/test/test.h
 

@@ -582,6 +582,33 @@ src/minimote/x11/minimote_x11.c.s:
 	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.s
 .PHONY : src/minimote/x11/minimote_x11.c.s
 
+src/test/test.o: src/test/test.c.o
+
+.PHONY : src/test/test.o
+
+# target to build an object file
+src/test/test.c.o:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/test/test.c.o
+.PHONY : src/test/test.c.o
+
+src/test/test.i: src/test/test.c.i
+
+.PHONY : src/test/test.i
+
+# target to preprocess a source file
+src/test/test.c.i:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/test/test.c.i
+.PHONY : src/test/test.c.i
+
+src/test/test.s: src/test/test.c.s
+
+.PHONY : src/test/test.s
+
+# target to generate assembly for a file
+src/test/test.c.s:
+	$(MAKE) -f CMakeFiles/MinimoteServer.dir/build.make CMakeFiles/MinimoteServer.dir/src/test/test.c.s
+.PHONY : src/test/test.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -642,6 +669,9 @@ help:
 	@echo "... src/minimote/x11/minimote_x11.o"
 	@echo "... src/minimote/x11/minimote_x11.i"
 	@echo "... src/minimote/x11/minimote_x11.s"
+	@echo "... src/test/test.o"
+	@echo "... src/test/test.i"
+	@echo "... src/test/test.s"
 .PHONY : help
 
 
