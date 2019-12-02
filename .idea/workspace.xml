@@ -11,49 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="409c3e9a-739d-40f0-9f23-9156c86f743e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/hash/hash.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/hash/node/hash_node.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/adt/list/list.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/arguments/arguments.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/arguments/arguments.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/buffer/rolling_buffer.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/buffer/rolling_buffer.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/main.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/client/minimote_client.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/controller/minimote_controller.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/packet/minimote_packet.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/server/minimote_server.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/MinimoteServer.dir/src/minimote/x11/minimote_x11.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/MinimoteServer" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/MinimoteServer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/MinimoteServer.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/MinimoteServer.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adt/hash/hash.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/adt/hash/hash.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adt/hash/hash.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/adt/hash/hash.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adt/hash/node/hash_node.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/adt/hash/node/hash_node.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adt/hash/node/hash_node.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/adt/hash/node/hash_node.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adt/list/list.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/adt/list/list.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adt/list/list.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/adt/list/list.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arguments/arguments.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/arguments/arguments.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arguments/arguments.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/arguments/arguments.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/buffer/rolling_buffer.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/buffer/rolling_buffer.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logging/logging.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/logging/logging.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minimote/client/minimote_client.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/client/minimote_client.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minimote/controller/minimote_controller.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/controller/minimote_controller.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minimote/controller/minimote_controller.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/controller/minimote_controller.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minimote/server/minimote_server.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/server/minimote_server.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minimote/x11/minimote_x11.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/minimote/x11/minimote_x11.c" afterDir="false" />
-    </list>
+    <list default="true" id="409c3e9a-739d-40f0-9f23-9156c86f743e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +125,7 @@
       <workItem from="1575243763722" duration="345000" />
       <workItem from="1575244435180" duration="1030000" />
       <workItem from="1575322625186" duration="5569000" />
-      <workItem from="1575328206072" duration="658000" />
+      <workItem from="1575328206072" duration="925000" />
     </task>
     <servers />
   </component>
