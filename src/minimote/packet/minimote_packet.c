@@ -70,7 +70,7 @@ void minimote_packet_dump(minimote_packet *packet) {
 void minimote_packet_data(minimote_packet *packet, byte * out_bytes) {
     uint64 type = ((uint64) packet->packet_type) & 0xFF;
     uint64 len = ((uint64) packet->packet_length) & 0xFF;
-    uint64 uid = current_ms();
+    uint64 uid = ms();
     uint64 header =
         (len << 56) |
         (type << 48) |

@@ -406,7 +406,7 @@ void keystroke_free_func(void *arg) {
 //}
 //
 //void take_screenshot(minimote_x11 *mx) {
-//    long start = current_ms();
+//    long start = ms();
 //
 //    Window root = DefaultRootWindow(mx->display);
 //
@@ -421,7 +421,7 @@ void keystroke_free_func(void *arg) {
 //
 //    XImage *ximg = XGetImage(mx->display, root, 0, 0, W, H, AllPlanes, XYPixmap);
 //
-//    long post_XGetImage = current_ms() - start;
+//    long post_XGetImage = ms() - start;
 //
 //    printf("post_XGetImage: %lums\n", post_XGetImage);
 //
@@ -453,11 +453,11 @@ void keystroke_free_func(void *arg) {
 //        }
 //    }
 //
-//    long pre_write = current_ms() - start;
+//    long pre_write = ms() - start;
 //    printf("Take screen: %lums\n", pre_write);
 //
 //    ppm_image_write(&ppm, "/tmp/_.screenshot.ppm");
 //
-//    long post_write = current_ms() - start;
+//    long post_write = ms() - start;
 //    printf("Take screen and write: %lums\n", post_write);
 //}

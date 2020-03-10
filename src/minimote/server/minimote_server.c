@@ -176,12 +176,24 @@ bool minimote_server_start(minimote_server *server) {
                         &server->error_sockets,
                         NULL);
 
-        if (ready_fds_count < 0) {
-            e("select() bad return (%d): %s", ready_fds_count, strerror(errno));
-            continue;
+        d("select() returned %d", ready_fds_count);
+
+        for (int i = 0; i < server->max_socket_fd; i++) {
+            if (FD_ISSET(i, &server->read_sockets)) {
+                v("read_socket %d is ready", i);
+            }
+            if (FD_ISSET(i, &server->write_sockets)) {
+                v("write_socket %d is ready", i);
+            }
+            if (FD_ISSET(i, &server->error_sockets)) {
+                v("error_socket %d is ready", i);
+            }
         }
 
-        d("select() returned %d", ready_fds_count);
+        if (ready_fds_count < 0) {
+            e("select() bad return: %s", strerror(errno));
+            continue;
+        }
 
         // Check which socket is ready to read
         // Important bug fix: TCP clients must be handled before TCP master,
@@ -191,12 +203,12 @@ bool minimote_server_start(minimote_server *server) {
         // TCP clients
         hash_foreach(&server->clients, clients_iterator_check_client_socket, server);
 
-        // TCP master
+        // TCP master: check for new connections
         if (FD_ISSET(server->tcp_socket, &server->read_sockets)) {
             minimote_server_handle_tcp_ready(server);
         }
 
-        // UDP master
+        // UDP master: wait for new data (connectionless)
         if (FD_ISSET(server->udp_socket,  &server->read_sockets)) {
             minimote_server_handle_udp_ready(server);
         }
@@ -421,7 +433,7 @@ bool minimote_server_answer_discover_request(minimote_server *server, minimote_c
     const size_t PAYLOAD_SIZE = strlen(server->hostname);
     minimote_packet response;
     response.packet_type = DISCOVER_RESPONSE;
-    response.event_time = current_ms();
+    response.event_time = ms();
     response.packet_length = MINIMOTE_PACKET_HEADER_SIZE + PAYLOAD_SIZE;
     response.payload = (byte *) server->hostname;
 
@@ -577,5 +589,7 @@ void clients_iterator_craft_select_fds(hash_node *hnode, void *arg) {
     FD_SET(client->tcp_socket_fd, &server->read_sockets);
     FD_SET(client->tcp_socket_fd, &server->error_sockets);
 
+    v("- TCP client found, doing MAX(%d, %d) = %d", server->max_socket_fd, client->tcp_socket_fd,
+             MAX(server->max_socket_fd, client->tcp_socket_fd));
     server->max_socket_fd = MAX(server->max_socket_fd, client->tcp_socket_fd);
 }

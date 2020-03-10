@@ -22,6 +22,10 @@ void minimote_client_init(
 ) {
     client->id = minimote_client_get_next_id();
     client->address = address;
+    // BUGFIX: tcp_socket_fd should be set to -1 and not 0, otherwise
+    // it might happen that an UDP client has the connection id 0 which
+    // is stdin
+    client->tcp_socket_fd = -1;
     rolling_buffer_init(&client->tcp_buffer, TCP_BUFFER_SIZE);
     minimote_controller_init(&client->controller, controller_config);
 }
