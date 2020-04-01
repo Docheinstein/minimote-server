@@ -52,6 +52,13 @@ uint32 bytes_to_uint32(const byte *bytes) {
 
 }
 
+uint16 bytes_to_uint16(const byte *bytes) {
+    return (uint16) (
+        (uint16) bytes[0] << 8 |
+        (uint16) bytes[1]);
+
+}
+
 uint8 bytes_to_uint8(const byte *bytes) {
     return (uint32) bytes[0];
 }

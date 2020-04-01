@@ -41,8 +41,13 @@ static void minimote_server_handle_packet_from_client(
         minimote_packet *packet,
         minimote_client *client);
 
+static bool minimote_server_answer_ping_request(
+        minimote_server *server, minimote_client *client,
+        minimote_packet *packet);
+
 static bool minimote_server_answer_discover_request(
-        minimote_server *server, minimote_client *client);
+        minimote_server *server, minimote_client *client,
+        minimote_packet *packet);
 
 static minimote_client * minimote_server_get_or_put_client(
         minimote_server *server,
@@ -414,8 +419,16 @@ void minimote_server_handle_packet_from_client(
 
             break;
         }
+        case PING: {
+            if (minimote_server_answer_ping_request(server, client, packet)) {
+                v("Answered to PING");
+            } else {
+                w("Failed to answer to PING: %s", strerror(errno));
+            }
+            break;
+        }
         case DISCOVER_REQUEST: {
-            if (minimote_server_answer_discover_request(server, client)) {
+            if (minimote_server_answer_discover_request(server, client, packet)) {
                 v("Answered to DISCOVER");
             } else {
                 w("Failed to answer to DISCOVER: %s", strerror(errno));
@@ -427,7 +440,8 @@ void minimote_server_handle_packet_from_client(
     }
 }
 
-bool minimote_server_answer_discover_request(minimote_server *server, minimote_client *client) {
+bool minimote_server_answer_discover_request(minimote_server *server, minimote_client *client,
+                                             minimote_packet *packet) {
     d("Answering to discover request, with hostname = %s", server->hostname);
 
     const size_t PAYLOAD_SIZE = strlen(server->hostname);
@@ -443,6 +457,49 @@ bool minimote_server_answer_discover_request(minimote_server *server, minimote_c
     return sendto(
             server->udp_socket, packet_data,response.packet_length,MSG_CONFIRM,
             (const struct sockaddr *) &client->address, sizeof(client->address)) > 0;
+}
+
+bool minimote_server_answer_ping_request(minimote_server *server, minimote_client *client,
+                                         minimote_packet *packet) {
+    int payload_length = minimote_packet_payload_length(packet);
+
+    if (payload_length < 2) {
+        w("Invalid PING packet length");
+        return false;
+    }
+
+    uint16 pong_port = bytes_to_uint16(packet->payload);
+
+    d("Answering to ping request at port %d", pong_port);
+
+    minimote_packet response;
+    minimote_packet_init(&response);
+
+    response.packet_type = PONG;
+    response.event_time = ms();
+    response.packet_length = MINIMOTE_PACKET_HEADER_SIZE;
+
+    d("Built pong response");
+    minimote_packet_dump(&response);
+
+    byte packet_data[response.packet_length];
+    minimote_packet_data(&response, packet_data);
+
+    // The response address has a different port (the one contained in the ping request)
+    struct sockaddr_in pong_address;
+
+    pong_address.sin_family = AF_INET;
+    pong_address.sin_addr.s_addr = client->address.sin_addr.s_addr;
+    pong_address.sin_port = htons(pong_port);
+
+    d("Sending PONG response");
+
+    return sendto(
+        server->udp_socket,
+        packet_data,
+        response.packet_length,
+        MSG_CONFIRM,
+        (const struct sockaddr *) &pong_address, sizeof(pong_address)) > 0;
 }
 
 minimote_client *minimote_server_get_or_put_client(minimote_server *server, struct sockaddr_in *client_sockaddr) {

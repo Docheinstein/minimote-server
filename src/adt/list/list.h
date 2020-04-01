@@ -1,7 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include <stdbool.h>
 #include "commons/globals.h"
 #include "adt/list/node/list_node.h"
 

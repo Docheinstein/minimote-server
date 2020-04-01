@@ -14,6 +14,7 @@ typedef struct minimote_packet_t {
     byte *payload;
 } minimote_packet;
 
+void minimote_packet_init(minimote_packet * packet);
 int minimote_packet_parse(minimote_packet * packet, byte * in_bytes, int bytecount);
 void minimote_packet_data(minimote_packet * packet, byte * out_bytes);
 void minimote_packet_dump(minimote_packet * packet);

@@ -38,6 +38,10 @@ const char * minimote_packet_type_to_string(minimote_packet_type type) {
             return "KEY_CLICK";
         case HOTKEY:
             return "HOTKEY";
+        case PING:
+            return "PING";
+        case PONG:
+            return "PONG";
         case DISCOVER_REQUEST:
             return "DISCOVER_REQUEST";
         case DISCOVER_RESPONSE:

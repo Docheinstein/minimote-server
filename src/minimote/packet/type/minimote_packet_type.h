@@ -21,6 +21,8 @@ typedef enum minimote_packet_type_t {
     KEY_CLICK           = 0x10,
     HOTKEY              = 0x11,
 
+    PING                = 0xFC,
+    PONG                = 0xFD,
     DISCOVER_REQUEST    = 0xFE,
     DISCOVER_RESPONSE   = 0xFF,
 } minimote_packet_type;

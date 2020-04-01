@@ -9,6 +9,14 @@
 
 #define MINIMOTE_PACKET_TIME_MASK 0xFFFFFFFFFFFFU
 
+void minimote_packet_init(minimote_packet *packet) {
+    // Default values
+    packet->packet_length = 0;
+    packet->packet_type = NONE;
+    packet->event_time = 0;
+    packet->payload = NULL;
+}
+
 // Returns the difference between the real packet byte count and the expected byte count.
 // Thus returns
 // negative number: the bytecount is lower than the expected packet length
@@ -16,10 +24,7 @@
 // positive number: the bytecount is greater than the expected packet length
 int minimote_packet_parse(minimote_packet *packet, byte * bytes, int bytecount) {
     // Default values
-    packet->packet_length = 0;
-    packet->packet_type = NONE;
-    packet->event_time = 0;
-    packet->payload = NULL;
+    minimote_packet_init(packet);
 
     if (bytecount < MINIMOTE_PACKET_MINIMUM_SIZE)
         return MINIMOTE_PACKET_PARSE_FAILED;
@@ -58,12 +63,16 @@ void minimote_packet_dump(minimote_packet *packet) {
     d("-- event_time: %lu", packet->event_time);
 
     if (is_valid) {
-        char payload_bin_str[1024];
-        d("-- payload %s",
-               bytes_to_bin_str_pretty(
-                       (byte *) packet->payload,
-                       minimote_packet_payload_length(packet),
-                       payload_bin_str));
+        if (packet->payload) {
+            char payload_bin_str[1024];
+            d("-- payload %s",
+              bytes_to_bin_str_pretty(
+                      (byte *) packet->payload,
+                      minimote_packet_payload_length(packet),
+                      payload_bin_str));
+        } else {
+            d("-- no payload");
+        }
     }
 }
 
@@ -77,20 +86,25 @@ void minimote_packet_data(minimote_packet *packet, byte * out_bytes) {
         (uid & MINIMOTE_PACKET_TIME_MASK);
 
     char bin_str[1024];
-    d("minimote_packet_data header: %s\n",
+    d("minimote_packet_data header: %s",
             bytes_to_bin_str_pretty((byte *) &header, 8, bin_str));
 
+    // Push header
     put_uint64(out_bytes, 0, header);
-    memcpy(&out_bytes[8], packet->payload, minimote_packet_payload_length(packet));
 
-    d("minimote_packet_data: %s\n",
+    // Push payload (if any)
+    if (packet->payload) {
+        memcpy(&out_bytes[8], packet->payload, minimote_packet_payload_length(packet));
+    }
+
+    d("minimote_packet_data: %s",
             bytes_to_bin_str_pretty(out_bytes, packet->packet_length, bin_str));
 }
 
 bool minimote_packet_is_valid(minimote_packet *packet) {
     return
         packet &&
-        packet->packet_length > MINIMOTE_PACKET_MINIMUM_SIZE &&
+        packet->packet_length >= MINIMOTE_PACKET_MINIMUM_SIZE &&
         packet->packet_type != NONE;
 }
 

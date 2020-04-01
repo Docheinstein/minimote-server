@@ -9,6 +9,7 @@ const char * bytes_to_bin_str_pretty(byte *Bs, int count, char * bin);
 
 uint64 bytes_to_uint64(const byte *bytes);
 uint32 bytes_to_uint32(const byte *bytes);
+uint16 bytes_to_uint16(const byte *bytes);
 uint8 bytes_to_uint8(const byte *bytes);
 
 void put_uint64(byte *bytes, int offset, uint64 val);
