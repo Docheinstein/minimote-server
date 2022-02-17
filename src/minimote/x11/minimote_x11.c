@@ -285,7 +285,7 @@ void minimote_x11_retrieve_keymap(minimote_x11 *mx) {
             ks->keycode = keycode;
             ks->keysym_pos = modifier;
 
-            v("[K (keysym) = %lu -> V (keycode, modifier) = %d, %d]",
+            d("[K (keysym) = %lu -> V (keycode, modifier) = %d, %d]",
               *keysym, ks->keycode, ks->keysym_pos);
 
             hash_put(&mx->keymap, keysym, ks);

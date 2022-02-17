@@ -55,23 +55,21 @@ int minimote_packet_parse(minimote_packet *packet, byte * bytes, int bytecount) 
 
 void minimote_packet_dump(minimote_packet *packet) {
     bool is_valid =  minimote_packet_is_valid(packet);
-    d("-- valid: %d", is_valid);
-    d("-- packet_length: %d", packet->packet_length);
-    d("-- packet_type: %s (%d)",
+    t("-- valid: %s", (is_valid ? "yes" : "no"));
+    t("-- packet_length: %d", packet->packet_length);
+    t("-- packet_type: %s (%d)",
             minimote_packet_type_to_string(packet->packet_type),
             packet->packet_type);
-    d("-- event_time: %lu", packet->event_time);
+    t("-- event_time: %lu", packet->event_time);
 
     if (is_valid) {
         if (packet->payload) {
             char payload_bin_str[1024];
-            d("-- payload %s",
+            t("-- payload %s",
               bytes_to_bin_str_pretty(
                       (byte *) packet->payload,
                       minimote_packet_payload_length(packet),
                       payload_bin_str));
-        } else {
-            d("-- no payload");
         }
     }
 }

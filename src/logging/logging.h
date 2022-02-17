@@ -8,7 +8,7 @@
 #define WARN    1
 #define INFO    1
 #define VERBOSE 1
-#define DEBUG   1
+#define DEBUG   0
 #define TRACE   1
 
 #define ERROR_TAG   "[E] "
@@ -145,17 +145,17 @@
 
 #if TRACE
 #define t0(fmt) \
-    printf("{%lu} " TRACE_TAG fmt " [%s:%d]\n", ns(), __func__, __LINE__)
+    printf("{%lu} " TRACE_TAG fmt "\n", ns())
 #define t1(fmt, a1) \
-    printf("{%lu} " TRACE_TAG fmt " [%s:%d]\n", ns(), a1, __func__, __LINE__)
+    printf("{%lu} " TRACE_TAG fmt "\n", ns(), a1)
 #define t2(fmt, a1, a2) \
-    printf("{%lu} " TRACE_TAG fmt " [%s:%d]\n", ns(), a1, a2, __func__, __LINE__)
+    printf("{%lu} " TRACE_TAG fmt "\n", ns(), a1, a2)
 #define t3(fmt, a1, a2, a3) \
-    printf("{%lu} " TRACE_TAG fmt " [%s:%d]\n", ns(), a1, a2, a3, __func__, __LINE__)
+    printf("{%lu} " TRACE_TAG fmt "\n", ns(), a1, a2, a3)
 #define t4(fmt, a1, a2, a3, a4) \
-    printf("{%lu} " TRACE_TAG fmt " [%s:%d]\n", ns(), a1, a2, a3, a4__func__, __LINE__)
+    printf("{%lu} " TRACE_TAG fmt "\n", ns(), a1, a2, a3, a4)
 #define t5(fmt, a1, a2, a3, a4, a5) \
-    printf("{%lu} " TRACE_TAG fmt " [%s:%d]\n", ns(), a1, a2, a3, a4, a5, __func__, __LINE__)
+    printf("{%lu} " TRACE_TAG fmt "\n", ns(), a1, a2, a3, a4, a5)
 #else
 #define t0(fmt)
 #define t1(fmt, a1)

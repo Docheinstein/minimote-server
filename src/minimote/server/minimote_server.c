@@ -59,6 +59,25 @@ static bool minimote_server_try_handle_client_buffer(
 
 static void minimote_server_setup_select_fds(minimote_server *server);
 
+static ssize_t minimote_sendto(minimote_packet *packet, int sockfd, minimote_client *client) {
+    t("Sending packet %s to client [%d]",
+        minimote_packet_type_to_string(packet->packet_type),
+        client->id);
+
+    minimote_packet_dump(packet);
+
+    byte *data = malloc(sizeof(byte) * packet->packet_length);
+
+    minimote_packet_data(packet, data);
+
+    ssize_t res = sendto(
+            sockfd, data, packet->packet_length, MSG_CONFIRM,
+            (const struct sockaddr *) &client->address,
+                    sizeof(client->address));
+
+    free(data);
+    return res;
+}
 
 void minimote_server_init(minimote_server *server,
                           int tcp_port,
@@ -333,7 +352,7 @@ void minimote_server_handle_packet_from_client(
         minimote_packet *packet,
         minimote_client *client) {
 
-    i("Handling packet %s from client [%d] of type",
+    t("Received packet %s from client [%d]",
             minimote_packet_type_to_string(packet->packet_type),
             client->id);
 
@@ -442,7 +461,7 @@ void minimote_server_handle_packet_from_client(
 
 bool minimote_server_answer_discover_request(minimote_server *server, minimote_client *client,
                                              minimote_packet *packet) {
-    d("Answering to discover request, with hostname = %s", server->hostname);
+    v("Answering to discover request, with hostname = %s", server->hostname);
 
     const size_t PAYLOAD_SIZE = strlen(server->hostname);
     minimote_packet response;
@@ -451,12 +470,7 @@ bool minimote_server_answer_discover_request(minimote_server *server, minimote_c
     response.packet_length = MINIMOTE_PACKET_HEADER_SIZE + PAYLOAD_SIZE;
     response.payload = (byte *) server->hostname;
 
-    byte packet_data[64];
-    minimote_packet_data(&response, packet_data);
-
-    return sendto(
-            server->udp_socket, packet_data,response.packet_length,MSG_CONFIRM,
-            (const struct sockaddr *) &client->address, sizeof(client->address)) > 0;
+    minimote_sendto(&response, server->udp_socket, client);
 }
 
 bool minimote_server_answer_ping_request(minimote_server *server, minimote_client *client,
@@ -470,7 +484,7 @@ bool minimote_server_answer_ping_request(minimote_server *server, minimote_clien
 
     uint16 pong_port = bytes_to_uint16(packet->payload);
 
-    d("Answering to ping request at port %d", pong_port);
+    v("Answering to ping request at port %d", pong_port);
 
     minimote_packet response;
     minimote_packet_init(&response);
@@ -479,11 +493,6 @@ bool minimote_server_answer_ping_request(minimote_server *server, minimote_clien
     response.event_time = ms();
     response.packet_length = MINIMOTE_PACKET_HEADER_SIZE;
 
-    d("Built pong response");
-    minimote_packet_dump(&response);
-
-    byte packet_data[response.packet_length];
-    minimote_packet_data(&response, packet_data);
 
     // The response address has a different port (the one contained in the ping request)
     struct sockaddr_in pong_address;
@@ -494,12 +503,7 @@ bool minimote_server_answer_ping_request(minimote_server *server, minimote_clien
 
     d("Sending PONG response");
 
-    return sendto(
-        server->udp_socket,
-        packet_data,
-        response.packet_length,
-        MSG_CONFIRM,
-        (const struct sockaddr *) &pong_address, sizeof(pong_address)) > 0;
+    minimote_sendto(&response, server->udp_socket, client);
 }
 
 minimote_client *minimote_server_get_or_put_client(minimote_server *server, struct sockaddr_in *client_sockaddr) {
@@ -512,7 +516,7 @@ minimote_client *minimote_server_get_or_put_client(minimote_server *server, stru
     if (!client) {
         char new_client_ip[INET_ADDRSTRLEN];
 
-        d("First message of client with address %s:%d",
+        v("First message of client with address %s:%d",
           sockaddr_to_ipv4(*client_sockaddr, new_client_ip),
           client_sockaddr->sin_port);
 
@@ -646,7 +650,7 @@ void clients_iterator_craft_select_fds(hash_node *hnode, void *arg) {
     FD_SET(client->tcp_socket_fd, &server->read_sockets);
     FD_SET(client->tcp_socket_fd, &server->error_sockets);
 
-    v("- TCP client found, doing MAX(%d, %d) = %d", server->max_socket_fd, client->tcp_socket_fd,
+    d("- TCP client found, doing MAX(%d, %d) = %d", server->max_socket_fd, client->tcp_socket_fd,
              MAX(server->max_socket_fd, client->tcp_socket_fd));
     server->max_socket_fd = MAX(server->max_socket_fd, client->tcp_socket_fd);
 }
