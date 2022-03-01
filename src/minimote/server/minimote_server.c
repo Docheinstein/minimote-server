@@ -59,25 +59,7 @@ static bool minimote_server_try_handle_client_buffer(
 
 static void minimote_server_setup_select_fds(minimote_server *server);
 
-static ssize_t minimote_sendto(minimote_packet *packet, int sockfd, minimote_client *client) {
-    t("Sending packet %s to client [%d]",
-        minimote_packet_type_to_string(packet->packet_type),
-        client->id);
-
-    minimote_packet_dump(packet);
-
-    byte *data = malloc(sizeof(byte) * packet->packet_length);
-
-    minimote_packet_data(packet, data);
-
-    ssize_t res = sendto(
-            sockfd, data, packet->packet_length, MSG_CONFIRM,
-            (const struct sockaddr *) &client->address,
-                    sizeof(client->address));
-
-    free(data);
-    return res;
-}
+static ssize_t minimote_sendto(minimote_packet *packet, int sockfd, struct sockaddr_in address);
 
 void minimote_server_init(minimote_server *server,
                           int tcp_port,
@@ -470,7 +452,7 @@ bool minimote_server_answer_discover_request(minimote_server *server, minimote_c
     response.packet_length = MINIMOTE_PACKET_HEADER_SIZE + PAYLOAD_SIZE;
     response.payload = (byte *) server->hostname;
 
-    minimote_sendto(&response, server->udp_socket, client);
+    return minimote_sendto(&response, server->udp_socket, client->address) > 0;
 }
 
 bool minimote_server_answer_ping_request(minimote_server *server, minimote_client *client,
@@ -502,8 +484,7 @@ bool minimote_server_answer_ping_request(minimote_server *server, minimote_clien
     pong_address.sin_port = htons(pong_port);
 
     d("Sending PONG response");
-
-    minimote_sendto(&response, server->udp_socket, client);
+    return minimote_sendto(&response, server->udp_socket, pong_address) > 0;
 }
 
 minimote_client *minimote_server_get_or_put_client(minimote_server *server, struct sockaddr_in *client_sockaddr) {
@@ -590,6 +571,30 @@ void minimote_server_setup_select_fds(minimote_server *server) {
     server->max_socket_fd = MAX(server->tcp_socket, server->udp_socket);
 
     hash_foreach(&server->clients, clients_iterator_craft_select_fds, server);
+}
+
+
+ssize_t minimote_sendto(minimote_packet *packet, int sockfd, struct sockaddr_in address) {
+#if TRACE
+    char address_str[INET_ADDRSTRLEN];
+    sockaddr_to_ipv4(address, address_str);
+    t("Sending packet %s to address [%s:%d]",
+        minimote_packet_type_to_string(packet->packet_type),
+        address_str, address.sin_port);
+#endif
+
+    minimote_packet_dump(packet);
+
+    byte *data = malloc(sizeof(byte) * packet->packet_length);
+
+    minimote_packet_data(packet, data);
+
+    ssize_t res = sendto(
+            sockfd, data, packet->packet_length, MSG_CONFIRM,
+            (const struct sockaddr *) &address, sizeof(address));
+
+    free(data);
+    return res;
 }
 
 // Hash functions

@@ -1,18 +1,30 @@
 ## Minimote Server
 
-Server for the Minimote Client that allows remote control of Linux hosts.  
-Written in C.  
+Server written in C for the [Minimote Client](https://github.com/Docheinstein/minimote-client-kotlin) that allows basic remote control (mouse and keyboard) of hosts.
+
 Uses libx11 for interact with the X server.
+
+The protocol supports a discover mechanism that allows the client to find active servers on the same network automatically.
 
 ### Why
 
-So that I can use the Minimote Client for perform basic actions from my bed.
+Mostly for control my laptop from my bed without standing up.
 
-### Supported functionalities
+### Control functionalities
 
-1. Mouse movement
-2. Unicode keys typing (limited to characters in the current keyboard layout)
-3. Hotkeys (e.g. Alt+F4, Ctrl+Alt+Canc, ...)
+#### Mouse
+* Movement
+* Scroll
+* Drag & Drop
+* Left Click / Left Down / Left Up
+* Right Click / Right Down / Right Up
+* Middle Click / Middle Down / Middle Up
+
+#### Keyboard
+* Unicode typing
+* Key Click / Key Down / Key Up
+* Hotkey (e.g. Alt+F4, Ctrl+Alt+Canc, ...)
+
 
 ### Requirements
 * glib2
