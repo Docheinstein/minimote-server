@@ -1,5 +1,5 @@
 #include <sys/types.h>
-#include "byte_utils.h"
+#include "commons/types.h"
 
 const char * byte_to_bin_str(byte B, char * bin) {
     uint i = 0;

@@ -1,7 +1,7 @@
 #ifndef BYTE_UTILS_H
 #define BYTE_UTILS_H
 
-#include "commons/globals.h"
+#include "commons/types.h"
 
 const char * byte_to_bin_str(byte B, char * bin);
 const char * bytes_to_bin_str(byte *Bs, int count, char * bin);

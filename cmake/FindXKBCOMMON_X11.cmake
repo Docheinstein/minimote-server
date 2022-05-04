@@ -1,0 +1,2 @@
+find_package(PkgConfig REQUIRED)
+pkg_search_module(XKBCOMMON_X11 xkbcommon-x11)
